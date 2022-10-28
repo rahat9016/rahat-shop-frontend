@@ -1,0 +1,105 @@
+.homeMenu {
+  width: 100%;
+}
+.homeMenu > ul {
+  position: relative;
+}
+.homeMenu > ul > li {
+  padding: 10px;
+  border-bottom: 1px solid #f5f5f5;
+  position: relative;
+}
+.homeMenu > ul > li:last-child {
+  border-bottom: none;
+}
+.homeMenu > ul > li > span {
+  display: block;
+  cursor: pointer;
+}
+
+.homeMenu > ul > li > ul {
+  position: absolute;
+  top: 0;
+  left: 320px;
+  z-index: 999999;
+  display: none;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 3px 3px 4px -4px #333;
+}
+.homeMenu > ul > li:hover ul {
+  display: block;
+}
+.homeMenu > ul > li > ul > li {
+  padding: 10px;
+  border-bottom: 1px solid #f5f5f5;
+  position: relative;
+}
+.homeMenu > ul > li > ul > li > ul {
+  position: absolute;
+  left: -100000px;
+  top: 0px;
+  display: none;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 3px 3px 4px -4px #333;
+}
+.homeMenu > ul > li > ul > li:hover > ul {
+  left: 250px;
+}
+.homeMenu > ul > li > ul > li > ul > li {
+  padding: 10px;
+  border-bottom: 1px solid #f5f5f5;
+}
+/* Menu section  */
+.allPageMenu {
+  /* height: 80px; */
+  width: 100%;
+}
+.allPageMenu > ul {
+  display: flex;
+  gap: 30px;
+}
+.allPageMenu > ul > li {
+  padding: 20px 0px;
+  position: relative;
+  cursor: pointer;
+}
+.allPageMenu > ul > li > ul {
+  position: absolute;
+  top: -99999px;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px rgb(237, 237, 237);
+  border-top: 3px solid #ef4a23;
+}
+.allPageMenu > ul > li:hover > ul {
+  top: 63px;
+}
+.allPageMenu > ul > li > ul > li {
+  position: relative;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 10px 10px;
+}
+.allPageMenu > ul > li > ul > li:last-child {
+  border-bottom: 0px;
+}
+
+.allPageMenu > ul > li > ul > li > ul {
+  border-top: 3px solid #ef4a23;
+  display: block;
+  position: absolute;
+  top: -99999px;
+  left: 200px;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px rgb(237, 237, 237);
+}
+
+.allPageMenu > ul > li > ul > li:hover > ul {
+  top: 0px;
+}
+.allPageMenu > ul > li > ul > li > ul > li {
+  border-bottom: 1px solid #f5f5f5;
+  padding: 10px 10px;
+}

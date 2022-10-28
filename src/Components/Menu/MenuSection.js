@@ -1,24 +1,28 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./style.css";
+import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-const MenuSection = () => {
+import "./style.css";
+const MenuSection = ({ home }) => {
   const { category } = useSelector((state) => state.category);
+
   const renderCategory = (categories) => {
     let myCategories = [];
     for (let category of categories) {
       myCategories.push(
         <li
           key={category.title}
-          className="flex justify-between font-fira font-semibold"
+          className="flex  justify-between font-fira font-semibold"
         >
-          {" "}
           {category.parentId ? (
-            <a href="/">{category.title}</a>
+            <Link to={`/shop?${category.slug}`}>{category.title} </Link>
           ) : (
             <span className="">{category.title}</span>
           )}
-          {category.children.length > 0 ? <MdOutlineKeyboardArrowRight /> : ""}
+          {category.children.length > 0 ? (
+            <MdOutlineKeyboardArrowRight />
+          ) : null}
           {category.children.length > 0 ? (
             <ul> {renderCategory(category.children)}</ul>
           ) : null}
@@ -28,9 +32,19 @@ const MenuSection = () => {
     return myCategories;
   };
   return (
-    <div className="menuHeader">
-      <ul>{renderCategory(category)}</ul>
-    </div>
+    <>
+      {home ? (
+        <div className="homeMenu">
+          <ul>{renderCategory(category)}</ul>
+        </div>
+      ) : (
+        <div className="w-full bg-white shadow-md">
+          <div className="allPageMenu container mx-auto">
+            <ul>{renderCategory(category)}</ul>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

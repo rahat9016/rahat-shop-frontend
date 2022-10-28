@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { heroInformation } from "../../Data/Data";
-import MenuSection from "./MenuSection";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { useSelector } from "react-redux";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./style.css";
 const HeroSection = () => {
+  const brands = useSelector((state) => state.brands.brands);
   return (
-    <div className="grid grid-cols-16 my-5 h-[60vh]">
-      <div>
-        <MenuSection />
-      </div>
-      <div className="w-full ">
+    <div className="">
+      <div className="w-full">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -31,7 +29,6 @@ const HeroSection = () => {
         >
           {heroInformation.length > 0
             ? heroInformation.map((item, index) => {
-                console.log(item.bg);
                 return (
                   <SwiperSlide key={index}>
                     <div
@@ -57,8 +54,9 @@ const HeroSection = () => {
                         <h2 className="font-quick text-textDark text-3xl pb-8 flex items-center gap-2">
                           Color
                           {item.productColor &&
-                            item.productColor.map((color) => (
+                            item.productColor.map((color, index) => (
                               <div
+                                key={index}
                                 className="w-5 h-5 rounded-[50%] "
                                 style={{ backgroundColor: `${color}` }}
                               ></div>
@@ -74,6 +72,22 @@ const HeroSection = () => {
               })
             : null}
         </Swiper>
+        <div className="grid grid-cols-5 gap-4 mt-5">
+          {brands.length > 0
+            ? brands.map((brand) => {
+                console.log(brand);
+                return (
+                  <div className=" h-24 p-4 flex items-center text-center mx-auto ">
+                    <img
+                      src={brand.brandLogo}
+                      alt=""
+                      className="h-[50px]	w-fit"
+                    />
+                  </div>
+                );
+              })
+            : null}
+        </div>
       </div>
     </div>
   );

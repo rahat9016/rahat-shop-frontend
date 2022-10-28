@@ -1,15 +1,14 @@
 import React from "react";
 import Header from "../Header/Header";
 
-const Layout = (props) => {
+const Layout = ({ home, children }) => {
   return (
     <div>
-      {props.header ? (
-        <div>
-          <Header />
-        </div>
-      ) : null}
-      <main className="container mx-auto">{props.children}</main>
+      <div>
+        <Header home={home} />
+      </div>
+      <main>{children}</main>
+      <footer>{/* <Footer /> */}</footer>
     </div>
   );
 };
