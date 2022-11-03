@@ -75,9 +75,11 @@ const HeroSection = () => {
         <div className="grid grid-cols-5 gap-4 mt-5">
           {brands.length > 0
             ? brands.map((brand) => {
-                console.log(brand);
                 return (
-                  <div className=" h-24 p-4 flex items-center text-center mx-auto ">
+                  <div
+                    key={brand._id}
+                    className=" h-24 p-4 flex items-center text-center mx-auto "
+                  >
                     <img
                       src={brand.brandLogo}
                       alt=""

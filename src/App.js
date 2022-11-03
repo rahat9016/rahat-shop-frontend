@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getAllCategory, getBrands } from "./action";
 import Shop from "./Pages/Shop/Shop";
 import Cart from "./Pages/Cart/Cart";
+import Product from "./Pages/Product/Product";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/product_id" element={<Product />}></Route>
       </Routes>
     </div>
   );
