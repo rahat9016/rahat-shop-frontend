@@ -2,8 +2,7 @@ import React from "react";
 import Button from "../Button/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 const ProductCard = ({ product }) => {
-  // console.log(product);
-  const { _id, name, price, productPictures } = product;
+  const { _id, name, price, productPictures, keyFeatures } = product;
   const productImage = productPictures.map((img) => {
     return img.img;
   });
@@ -27,13 +26,12 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="pl-4 pb-1">
           <ul className="list-disc text-primaryLight text-[15px]">
-            <li>
-              Processor: Intel Core i7-1165G7 (12MB Cache, 2.80GHz up to
-              4.70GHz)
-            </li>
-            <li>RAM: 16GB, Storage: 512GB SSD</li>
-            <li>Display: 13.4" (1920 x 1200) FHD Touch</li>
-            <li>Features: RGB Backlit Keyboard</li>
+            {keyFeatures &&
+              keyFeatures.slice(0, 4).map((feature) => (
+                <li key={feature._id} className="text-textGray py-1">
+                  {feature.key}
+                </li>
+              ))}
           </ul>
         </div>
         <span className="block w-full h-[1px] bg-gray my-5"></span>

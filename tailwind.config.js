@@ -17,6 +17,8 @@ module.exports = {
         textDark: "#2A2F2F",
         bgShop: "#f2f4f8",
         btnBlue: "#3749bb",
+        textBlue: "#3749bb",
+        textGray: "#666",
       },
       fontFamily: {
         fira: ["Fira Sans Condensed", "sans-serif"],

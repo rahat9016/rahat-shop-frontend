@@ -1,13 +1,124 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
-
+import Img from "../../Images/appleGreen.png";
+import {
+  AiOutlineMinus,
+  AiOutlinePlus,
+  AiFillStar,
+  AiOutlineStar,
+} from "react-icons/ai";
+import { MdOutlineStarHalf } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findProductById } from "../../action/product.action";
 const Product = () => {
+  const { product } = useSelector((state) => state.product);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const params = location.search.split("?")[1].split("/")[0];
+  console.log(product);
+  useEffect(() => {
+    dispatch(findProductById(params));
+  }, [dispatch, params]);
+  console.log(product);
   return (
     <Layout>
-      <div className="bg-bgShop h-[100vh]">
+      <div className=" h-[100vh]">
         <MenuSection />
-        <div className="container mx-auto flex gap-4 w-full mt-5"></div>
+        <div className="container mx-auto py-5">
+          <div className="flex">
+            {/* Product Images */}
+            <div className="w-[40%] flex flex-col items-center gap-4">
+              <div className="text-center w-full h-[500px] ">
+                <img src={Img} className="w-[80%] h-fit inline " alt="" />
+              </div>
+              <div className="flex flex-row gap-1">
+                <img
+                  src={Img}
+                  alt=""
+                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
+                />
+                <img
+                  src={Img}
+                  alt=""
+                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
+                />
+                <img
+                  src={Img}
+                  alt=""
+                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
+                />
+              </div>
+            </div>
+            {/* Product Information */}
+            <div className="w-[60%]">
+              <h1 className="text-3xl	text-textBlue mb-4 font-plus">
+                {product && product.name}
+              </h1>
+
+              <div className="flex items-center gap-3">
+                <span className="text-sm px-4 py-2 bg-bgShop font-quick font-bold rounded-full">
+                  <span className="text-textGray font-medium ">Price: </span>
+                  {product && product.price}৳
+                </span>
+                <span className="text-sm px-4 py-2 bg-bgShop font-quick font-bold rounded-full">
+                  <span className="text-textGray font-medium ">Status: </span>
+                  In Stoke
+                </span>
+                <span className="text-sm px-4 py-2 bg-bgShop font-quick font-bold rounded-full">
+                  <span className="text-textGray font-medium ">Brand: </span>
+                  {product && product?.brand.name}
+                </span>
+              </div>
+              <div className="flex mt-3 items-center">
+                <AiFillStar className="text-[#FFD500] text-lg" />
+                <AiFillStar className="text-[#FFD500] text-lg" />
+                <AiFillStar className="text-[#FFD500] text-lg" />
+                <MdOutlineStarHalf className="text-[#FFD500] text-lg" />
+                <AiOutlineStar className="text-[#FFD500] text-lg" />
+                <p className="ml-2 text-[#1a9cb7]">27 Ratings</p>
+              </div>
+              <div className="my-5">
+                <h2 className="text-2xl mb-2">Key Features</h2>
+                <ul className="list-none text-primaryLight text-[15px]">
+                  {product &&
+                    product.keyFeatures.map((feature) => (
+                      <li key={feature._id} className="mb-1 text-base">
+                        {feature.key}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="">
+                <div className="flex items-center ">
+                  <button className="border border-lightWhite px-3 py-3  ">
+                    <AiOutlineMinus />
+                  </button>
+                  <span className="border border-lightWhite px-5 py-2  ">
+                    1
+                  </span>
+                  <button className="border border-lightWhite px-3 py-3  ">
+                    <AiOutlinePlus />
+                  </button>
+                </div>
+                <div className="flex gap-3 mt-5">
+                  <button className="text-lg bg-orange px-16 py-2  text-white">
+                    Buy Now
+                  </button>
+                  <button className="text-lg bg-btnBlue px-16 py-2 text-white">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+              <div className="mt-5">
+                <h3 className="text-2xl mb-2">Description</h3>
+                <p className="text-justify">{product && product.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>{/* <h1>Related Products</h1> */}</div>
       </div>
     </Layout>
   );
