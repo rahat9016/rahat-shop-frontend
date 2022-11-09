@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 import Img from "../../Images/appleGreen.png";
@@ -13,15 +13,24 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../action/product.action";
 const Product = () => {
-  const { product } = useSelector((state) => state.product);
-  const location = useLocation();
   const dispatch = useDispatch();
+  const location = useLocation();
   const params = location.search.split("?")[1].split("/")[0];
-  console.log(product);
+  const { product } = useSelector((state) => state.product);
+  // destructure product image
+  const proImg = product && product?.productPictures[0].img;
+  const [singleProductImage, setSingleProductImage] = useState();
+
+  useEffect(() => {
+    setSingleProductImage(proImg);
+  }, [proImg]);
+  const hoverHandler = (image, i) => {
+    setSingleProductImage(image);
+  };
+  // Find Product By ID
   useEffect(() => {
     dispatch(findProductById(params));
   }, [dispatch, params]);
-  console.log(product);
   return (
     <Layout>
       <div className=" h-[100vh]">
@@ -31,24 +40,25 @@ const Product = () => {
             {/* Product Images */}
             <div className="w-[40%] flex flex-col items-center gap-4">
               <div className="text-center w-full h-[500px] ">
-                <img src={Img} className="w-[80%] h-fit inline " alt="" />
+                <img
+                  src={singleProductImage}
+                  className="w-[80%] h-fit inline "
+                  alt=""
+                />
               </div>
               <div className="flex flex-row gap-1">
-                <img
-                  src={Img}
-                  alt=""
-                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
-                />
-                <img
-                  src={Img}
-                  alt=""
-                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
-                />
-                <img
-                  src={Img}
-                  alt=""
-                  className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
-                />
+                {product &&
+                  product.productPictures.map((productImg, i) => {
+                    return (
+                      <img
+                        key={i}
+                        src={productImg?.img}
+                        alt=""
+                        className="w-16 h-16 p-1 cursor-pointer border border-lightWhite shadow-sm"
+                        onMouseOver={() => hoverHandler(productImg?.img, i)}
+                      />
+                    );
+                  })}
               </div>
             </div>
             {/* Product Information */}
