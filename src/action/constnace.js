@@ -33,3 +33,8 @@ export const Logout = {
   LOGOUT_SUCCESS: "LOGOUT_SUCCESS",
   LOGOUT_FAILURE: "LOGOUT_FAILURE",
 };
+export const cartConstance = {
+  ADD_TO_CART: "ADD_TO_CART",
+  INCREASE_CART: "INCREASE_CART",
+  DECREASE_CART: "DECREASE_CART",
+};

@@ -8,10 +8,11 @@ import Cart from "./Pages/Cart/Cart";
 import Product from "./Pages/Product/Product";
 import Login from "./Pages/Authorization/Login";
 import Register from "./Pages/Authorization/Register";
+import { updateCart } from "./action/cart.action";
+// import { updateCart } from "./action/cart.action";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllCategory());
     dispatch(getBrands());
+    dispatch(updateCart());
   }, [dispatch]);
   return (
     <div>

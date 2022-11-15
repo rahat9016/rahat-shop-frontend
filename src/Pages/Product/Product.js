@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
-import Img from "../../Images/appleGreen.png";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -12,25 +11,58 @@ import { MdOutlineStarHalf } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../action/product.action";
+import { addToCart } from "../../action/cart.action";
 const Product = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const params = location.search.split("?")[1].split("/")[0];
   const { product } = useSelector((state) => state.product);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   // destructure product image
   const proImg = product && product?.productPictures[0].img;
   const [singleProductImage, setSingleProductImage] = useState();
-
+  const [quantity, setQuantity] = useState();
+  useEffect(() => {
+    setQuantity(cartItems[product?._id] ? cartItems[product._id].qty : 1);
+  }, [cartItems, product?._id]);
   useEffect(() => {
     setSingleProductImage(proImg);
   }, [proImg]);
   const hoverHandler = (image, i) => {
     setSingleProductImage(image);
   };
+
   // Find Product By ID
   useEffect(() => {
     dispatch(findProductById(params));
   }, [dispatch, params]);
+
+  const handleCart = () => {
+    const productItem = {
+      _id: product?._id,
+      qty: quantity,
+    };
+    dispatch(addToCart(productItem));
+  };
+
+  const handleIncrement = () => {
+    setQuantity((pvsValue) => pvsValue + 1);
+    const productItem = {
+      _id: product?._id,
+      qty: quantity,
+    };
+    dispatch(addToCart(productItem, 1));
+  };
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      const productItem = {
+        _id: product?._id,
+        qty: quantity - 1,
+      };
+      dispatch(addToCart(productItem, -1));
+    }
+  };
   return (
     <Layout>
       <div className=" h-[100vh]">
@@ -102,13 +134,19 @@ const Product = () => {
               </div>
               <div className="">
                 <div className="flex items-center ">
-                  <button className="border border-lightWhite px-3 py-3  ">
+                  <button
+                    className="border border-lightWhite px-3 py-3"
+                    onClick={handleDecrement}
+                  >
                     <AiOutlineMinus />
                   </button>
                   <span className="border border-lightWhite px-5 py-2  ">
-                    1
+                    {quantity}
                   </span>
-                  <button className="border border-lightWhite px-3 py-3  ">
+                  <button
+                    className="border border-lightWhite px-3 py-3"
+                    onClick={handleIncrement}
+                  >
                     <AiOutlinePlus />
                   </button>
                 </div>
@@ -116,7 +154,10 @@ const Product = () => {
                   <button className="text-lg bg-orange px-16 py-2  text-white">
                     Buy Now
                   </button>
-                  <button className="text-lg bg-btnBlue px-16 py-2 text-white">
+                  <button
+                    className="text-lg bg-btnBlue px-16 py-2 text-white"
+                    onClick={handleCart}
+                  >
                     Add to Cart
                   </button>
                 </div>

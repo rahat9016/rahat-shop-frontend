@@ -1,0 +1,5 @@
+1. Add Item in a cart
+2. find product in a cart if product exist in a cart we will increment or decrement cart qty
+3. Save in local storage
+4. get local storage Item
+
