@@ -17,21 +17,18 @@ const Product = () => {
   const location = useLocation();
   const params = location.search.split("?")[1].split("/")[0];
   const { product } = useSelector((state) => state.product);
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { cart } = useSelector((state) => state.cart);
   // destructure product image
   const proImg = product && product?.productPictures[0].img;
   const [singleProductImage, setSingleProductImage] = useState();
-  const [quantity, setQuantity] = useState();
-  useEffect(() => {
-    setQuantity(cartItems[product?._id] ? cartItems[product._id].qty : 1);
-  }, [cartItems, product?._id]);
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     setSingleProductImage(proImg);
   }, [proImg]);
   const hoverHandler = (image, i) => {
     setSingleProductImage(image);
   };
-
+  // const item = cart.filter((cartItem) => cartItem._id === product?._id);
   // Find Product By ID
   useEffect(() => {
     dispatch(findProductById(params));
@@ -39,7 +36,7 @@ const Product = () => {
 
   const handleCart = () => {
     const productItem = {
-      _id: product?._id,
+      product: product,
       qty: quantity,
     };
     dispatch(addToCart(productItem));
@@ -47,20 +44,10 @@ const Product = () => {
 
   const handleIncrement = () => {
     setQuantity((pvsValue) => pvsValue + 1);
-    const productItem = {
-      _id: product?._id,
-      qty: quantity,
-    };
-    dispatch(addToCart(productItem, 1));
   };
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
-      const productItem = {
-        _id: product?._id,
-        qty: quantity - 1,
-      };
-      dispatch(addToCart(productItem, -1));
     }
   };
   return (

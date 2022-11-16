@@ -11,9 +11,8 @@ const ProductCard = ({ product }) => {
     return img.img;
   });
   const productObj = {
-    _id: product?._id,
+    product: product.product,
     qty: 1,
-    price: product?.price,
   };
 
   const handleClick = () => {
