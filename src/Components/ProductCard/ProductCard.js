@@ -10,13 +10,9 @@ const ProductCard = ({ product }) => {
   const productImage = productPictures.map((img) => {
     return img.img;
   });
-  const productObj = {
-    product: product.product,
-    qty: 1,
-  };
 
   const handleClick = () => {
-    dispatch(addToCart(productObj));
+    dispatch(addToCart(_id, 1));
   };
   return (
     <div className="bg-white rounded-md">

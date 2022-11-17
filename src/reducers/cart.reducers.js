@@ -10,7 +10,6 @@ export const cartReducers = (state = { cartItems: [] }, action) => {
       if (isItemExit) {
         return {
           ...state,
-
           cartItems: state.cartItems.map((i) =>
             i.product_id === isItemExit.product_id ? item : i
           ),
@@ -21,6 +20,13 @@ export const cartReducers = (state = { cartItems: [] }, action) => {
           cartItems: [...state.cartItems, item],
         };
       }
+    case cartConstance.REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (i) => i.product_id !== action.payload
+        ),
+      };
     default:
       return state;
   }

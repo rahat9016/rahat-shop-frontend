@@ -17,7 +17,6 @@ const Product = () => {
   const location = useLocation();
   const params = location.search.split("?")[1].split("/")[0];
   const { product } = useSelector((state) => state.product);
-  const { cart } = useSelector((state) => state.cart);
   // destructure product image
   const proImg = product && product?.productPictures[0].img;
   const [singleProductImage, setSingleProductImage] = useState();
@@ -28,26 +27,24 @@ const Product = () => {
   const hoverHandler = (image, i) => {
     setSingleProductImage(image);
   };
-  // const item = cart.filter((cartItem) => cartItem._id === product?._id);
   // Find Product By ID
   useEffect(() => {
     dispatch(findProductById(params));
   }, [dispatch, params]);
 
   const handleCart = () => {
-    const productItem = {
-      product: product,
-      qty: quantity,
-    };
-    dispatch(addToCart(productItem));
+    dispatch(addToCart(product?._id, quantity));
   };
 
   const handleIncrement = () => {
-    setQuantity((pvsValue) => pvsValue + 1);
+    if (product.quantity <= quantity) return;
+    const qty = quantity + 1;
+    setQuantity(qty);
   };
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      const qty = quantity - 1;
+      setQuantity(qty);
     }
   };
   return (

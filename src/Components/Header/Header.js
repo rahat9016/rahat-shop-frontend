@@ -8,8 +8,11 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import Search from "../Search/Search";
 import Auth from "./components/auth";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Cart from "./components/cart";
 const Header = ({ home }) => {
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart.cartItems);
   return (
     <>
       {home ? (
@@ -64,14 +67,7 @@ const Header = ({ home }) => {
 
               {/* Search Section */}
               <Search />
-              <div className="flex items-center gap-3 ml-8 ">
-                <AiOutlineHeart className="text-2xl text-white cursor-pointer" />
-                <AiOutlineShoppingCart
-                  className="text-2xl text-white cursor-pointer"
-                  onClick={() => navigate("/cart")}
-                />
-                <Auth />
-              </div>
+              <Cart />
             </div>
           </div>
         </div>
@@ -90,14 +86,15 @@ const Header = ({ home }) => {
               </div>
               {/* Search Section */}
               <Search />
-              <div className="flex items-center gap-3 ml-8 ">
+              <Cart />
+              {/* <div className="flex items-center gap-3 ml-8 ">
                 <AiOutlineHeart className="text-2xl text-white cursor-pointer" />
                 <AiOutlineShoppingCart
                   className="text-2xl text-white cursor-pointer"
                   onClick={() => navigate("/cart")}
                 />
                 <Auth />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
