@@ -12,6 +12,8 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../action/product.action";
 import { addToCart } from "../../action/cart.action";
+import Reviews from "../../Components/Reviews/Reviews";
+import RelatedProducts from "../../Components/RelatedProduct/RelatedProducts";
 const Product = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -51,8 +53,8 @@ const Product = () => {
     <Layout>
       <div className=" h-[100vh]">
         <MenuSection />
-        <div className="container mx-auto py-5">
-          <div className="flex">
+        <div className="container mx-auto py-5 ">
+          <div className="flex ">
             {/* Product Images */}
             <div className="w-[40%] flex flex-col items-center gap-4">
               <div className="text-center w-full h-[500px] ">
@@ -153,7 +155,19 @@ const Product = () => {
             </div>
           </div>
         </div>
-        <div>{/* <h1>Related Products</h1> */}</div>
+        <div className="bg-bgShop">
+          <div className="container mx-auto">
+            <div className="flex gap-7 mt-11">
+              <div className="w-[70%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)]">
+                <Reviews height="50px" />
+              </div>
+              <div className="w-[30%] bg-bgShop shadow-md">
+                {" "}
+                <RelatedProducts />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

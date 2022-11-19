@@ -8,6 +8,8 @@ import Cart from "./Pages/Cart/Cart";
 import Product from "./Pages/Product/Product";
 import Login from "./Pages/Authorization/Login";
 import Register from "./Pages/Authorization/Register";
+import Review from "./Pages/Review/Review";
+import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -30,6 +32,15 @@ function App() {
         <Route path="/account/login" element={<Login />}></Route>
         <Route path="/new-account/register" element={<Register />}></Route>
         <Route path="/product_id" element={<Product />}></Route>
+        {/* <Route path="/review" element={<Review />}></Route> */}
+        <Route
+          path="/review"
+          element={
+            <PrivateRoute>
+              <Review></Review>
+            </PrivateRoute>
+          }
+        ></Route>
       </Routes>
     </div>
   );
