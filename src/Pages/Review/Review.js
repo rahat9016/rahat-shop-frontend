@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 // import StarRatings from "./react-star-ratings";
 import StarRatings from "react-star-ratings";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { productStar } from "../../action/product.action";
 const Review = () => {
+  const { id } = useParams();
+  const [star, setStar] = useState(0);
+  const dispatch = useDispatch();
+  const onStarClick = (newRating, name) => {
+    setStar(newRating);
+    dispatch(productStar(name, star));
+  };
   return (
     <Layout class="bg-bgShop h-[100vh]">
       <div className=" h-[100vh]">
@@ -22,10 +32,13 @@ const Review = () => {
               Rating
             </p>
             <StarRatings
+              name={id}
               numberOfStars={5}
-              rating={2}
+              rating={star}
               starRatedColor="orange"
               starDimension="50px"
+              isSelectable={true}
+              changeRating={onStarClick}
             />
             <p className="mt-2">Your Review</p>
             <textarea

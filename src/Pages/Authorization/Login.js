@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { signing } from "../../action/auth.action";
 import Input from "../../Components/Input/Input";
 import Layout from "../../Components/Layout/Layout";
@@ -14,6 +14,9 @@ const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialValue);
   const dispatch = useDispatch();
+  const location = useLocation();
+  // destructure location
+  const locationState = location.state?.from;
   const handleChange = (e) => {
     e.preventDefault();
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,9 +27,13 @@ const Login = () => {
   };
   useEffect(() => {
     if (auth.authenticate) {
-      navigate("/");
+      if (locationState) {
+        navigate(locationState.pathname);
+      } else {
+        navigate("/");
+      }
     }
-  }, [auth.authenticate, navigate]);
+  }, [auth.authenticate, navigate, locationState]);
   return (
     <Layout>
       <div className="bg-bgShop h-[100%]">

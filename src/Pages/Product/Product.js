@@ -159,7 +159,7 @@ const Product = () => {
           <div className="container mx-auto">
             <div className="flex gap-7 mt-11">
               <div className="w-[70%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)]">
-                <Reviews height="50px" />
+                <Reviews height="50px" id={product?._id} />
               </div>
               <div className="w-[30%] bg-bgShop shadow-md">
                 {" "}

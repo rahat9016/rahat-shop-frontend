@@ -86,7 +86,8 @@ export const logout = (user) => {
     dispatch({
       type: Logout.LOGOUT_REQUEST,
     });
-    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     window.location.reload();
     dispatch({
       type: Logout.LOGOUT_SUCCESS,

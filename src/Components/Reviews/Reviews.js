@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { BsStarHalf } from "react-icons/bs";
 
-const Reviews = () => {
+const Reviews = ({ id }) => {
   const navigate = useNavigate();
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
@@ -44,7 +44,7 @@ const Reviews = () => {
               <button
                 className="px-3  border-2 border-btnBlue hover:bg-btnBlue text-textBlue hover:text-white py-2 rounded-sm font-varelo font-medium"
                 type="submit"
-                onClick={() => navigate("/review")}
+                onClick={() => navigate(`/review/${id}`)}
               >
                 Write a Review
               </button>

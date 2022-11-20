@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory, getBrands, isUserLoggedIn } from "./action";
@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     dispatch(getAllCategory());
     dispatch(getBrands());
-    // dispatch(updateCart());
   }, [dispatch]);
   return (
     <div>
@@ -32,15 +31,10 @@ function App() {
         <Route path="/account/login" element={<Login />}></Route>
         <Route path="/new-account/register" element={<Register />}></Route>
         <Route path="/product_id" element={<Product />}></Route>
-        {/* <Route path="/review" element={<Review />}></Route> */}
-        <Route
-          path="/review"
-          element={
-            <PrivateRoute>
-              <Review></Review>
-            </PrivateRoute>
-          }
-        ></Route>
+        {/* Private routers */}
+        <Route path="/*" element={<PrivateRoute />}>
+          <Route path="review/:id" element={<Review />}></Route>
+        </Route>
       </Routes>
     </div>
   );
