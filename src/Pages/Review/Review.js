@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
-// import StarRatings from "./react-star-ratings";
 import StarRatings from "react-star-ratings";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { productStar } from "../../action/product.action";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findProductById, productStar } from "../../action/product.action";
+
 const Review = () => {
+  const { product } = useSelector((state) => state.product);
+  const { user } = useSelector((state) => state.auth);
+  // console.log(product);
   const { id } = useParams();
   const [star, setStar] = useState(0);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(findProductById(id));
+  }, [dispatch, id]);
+  useEffect(() => {
+    if (product?.reviews && user) {
+      let existingRatingObject = product.reviews.find(
+        (ele) => ele.postedBy.toString() === user._id.toString()
+      );
+      existingRatingObject && setStar(existingRatingObject.star);
+    }
+  }, [product?.reviews, user]);
+
   const onStarClick = (newRating, name) => {
     setStar(newRating);
-    dispatch(productStar(name, star));
+    dispatch(productStar(name, newRating)).then(() => {
+      navigate(-1);
+    });
   };
   return (
     <Layout class="bg-bgShop h-[100vh]">
@@ -25,8 +44,7 @@ const Review = () => {
             </h2>
             <p>Product Name</p>
             <p className="border border-[#ddd] p-2 text-sm mb-2">
-              Samsung Galaxy Book Pro 180 Core i7 11th Gen 2-in-1 15.6" FHD
-              Touch Laptop
+              {product?.name}
             </p>
             <p className="after:content-['*'] after:ml-0.5 after:text-red-500">
               Rating

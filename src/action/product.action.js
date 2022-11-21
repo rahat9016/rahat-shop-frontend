@@ -18,10 +18,6 @@ export const findProductById = (id) => {
 };
 export const productStar = (productId, star) => {
   return async (dispatch) => {
-    const res = await axios.put(`/product/start/${productId}`, { star });
-    dispatch({
-      type: "ADD_STAR",
-      payload: {},
-    });
+    await axios.put(`/product/start/${productId}`, { star });
   };
 };

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { BsStarHalf } from "react-icons/bs";
-
-const Reviews = ({ id }) => {
+import StarRatings from "react-star-ratings";
+const Reviews = ({ product }) => {
   const navigate = useNavigate();
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
@@ -35,7 +35,9 @@ const Reviews = ({ id }) => {
             {/* Header */}
             <div className="px-2 py-6 flex justify-between items-center  border-b-2 border-lightGray ">
               <div className="">
-                <h1 className="text-xl text-primary font-bold">Reviews (0)</h1>
+                <h1 className="text-xl text-primary font-bold">
+                  Reviews ({product && product.reviews.length})
+                </h1>
                 <p className="text-primaryDark">
                   Get specific details about this product from customers who own
                   it.
@@ -44,18 +46,50 @@ const Reviews = ({ id }) => {
               <button
                 className="px-3  border-2 border-btnBlue hover:bg-btnBlue text-textBlue hover:text-white py-2 rounded-sm font-varelo font-medium"
                 type="submit"
-                onClick={() => navigate(`/review/${id}`)}
+                onClick={() => navigate(`/review/${product?._id}`)}
               >
                 Write a Review
               </button>
             </div>
-            <div className="h-[200px] flex justify-center items-center">
-              <BsStarHalf
-                fontSize="80px "
-                color="#3749bb"
-                className="bg-[rgba(55,73,187,.1)] p-4 rounded-full"
-              />
-              <p></p>
+            <div className="h-[200px] overflow-y-scroll scrollbar-hide">
+              {product?.reviews && product?.reviews.length > 0 ? (
+                <div>
+                  {product?.reviews.map((item) => {
+                    return (
+                      <div className="py-2 ">
+                        <StarRatings
+                          rating={item.star}
+                          starDimension="20px"
+                          starSpacing="1px"
+                          starRatedColor="orange"
+                        />
+                        <p>
+                          Razer DeathAdder Essential Gaming Mouse is Good
+                          product if you have relatively large hands as this
+                          mouse can be a hassle to grip otherwise. Other than
+                          that, it is great value for the money.
+                        </p>
+                        <p>
+                          By{" "}
+                          <span className="text-btnBlue font-semibold">
+                            {item?.postedBy.firstName +
+                              " " +
+                              item?.postedBy.lastName}
+                          </span>
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="w-full  h-full flex justify-center items-center">
+                  <BsStarHalf
+                    fontSize="80px "
+                    color="#3749bb"
+                    className="bg-[rgba(55,73,187,.1)] p-4 rounded-full"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

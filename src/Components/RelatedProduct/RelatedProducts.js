@@ -1,7 +1,7 @@
 import React from "react";
 
 const RelatedProducts = () => {
-  return <div>RelatedProducts</div>;
+  return <div className="p-3">RelatedProducts</div>;
 };
 
 export default RelatedProducts;

@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
-import {
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiFillStar,
-  AiOutlineStar,
-} from "react-icons/ai";
-import { MdOutlineStarHalf } from "react-icons/md";
+import { AiOutlineMinus, AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../action/product.action";
 import { addToCart } from "../../action/cart.action";
 import Reviews from "../../Components/Reviews/Reviews";
 import RelatedProducts from "../../Components/RelatedProduct/RelatedProducts";
+import Ratings from "../../Components/Reviews/Ratings";
 const Product = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -100,12 +95,23 @@ const Product = () => {
                 </span>
               </div>
               <div className="flex mt-3 items-center">
-                <AiFillStar className="text-[#FFD500] text-lg" />
-                <AiFillStar className="text-[#FFD500] text-lg" />
-                <AiFillStar className="text-[#FFD500] text-lg" />
-                <MdOutlineStarHalf className="text-[#FFD500] text-lg" />
-                <AiOutlineStar className="text-[#FFD500] text-lg" />
-                <p className="ml-2 text-[#1a9cb7]">27 Ratings</p>
+                {product && product.reviews.length > 0 ? (
+                  <div className="flex items-center">
+                    <Ratings product={product} />{" "}
+                    <p className="ml-2 text-[#1a9cb7]">
+                      {product && product.reviews.length} Ratings
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <AiFillStar className="text-gray text-lg" />
+                    <AiFillStar className="text-gray text-lg" />
+                    <AiFillStar className="text-gray text-lg" />
+                    <AiFillStar className="text-gray text-lg" />
+                    <AiFillStar className="text-gray text-lg" />
+                    <p className="ml-2 text-[#1a9cb7]">0 Ratings</p>
+                  </div>
+                )}
               </div>
               <div className="my-5">
                 <h2 className="text-2xl mb-2">Key Features</h2>
@@ -157,11 +163,11 @@ const Product = () => {
         </div>
         <div className="bg-bgShop">
           <div className="container mx-auto">
-            <div className="flex gap-7 mt-11">
-              <div className="w-[70%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)]">
-                <Reviews height="50px" id={product?._id} />
+            <div className="flex gap-7 mt-11 ">
+              <div className="w-[70%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)] rounded-sm">
+                <Reviews height="50px" product={product} />
               </div>
-              <div className="w-[30%] bg-bgShop shadow-md">
+              <div className="w-[30%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)] rounded-sm">
                 {" "}
                 <RelatedProducts />
               </div>
