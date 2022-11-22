@@ -10,7 +10,7 @@ const Reviews = ({ product }) => {
     setToggleState(index);
   };
   return (
-    <div>
+    <div className="bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)] rounded-sm">
       {/* Header */}
       <div className="flex ">
         <button
@@ -82,7 +82,7 @@ const Reviews = ({ product }) => {
                   })}
                 </div>
               ) : (
-                <div className="w-full  h-full flex justify-center items-center">
+                <div className="w-full h-full flex justify-center items-center">
                   <BsStarHalf
                     fontSize="80px "
                     color="#3749bb"

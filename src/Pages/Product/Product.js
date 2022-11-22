@@ -4,7 +4,10 @@ import MenuSection from "../../Components/Menu/MenuSection";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { findProductById } from "../../action/product.action";
+import {
+  findProductById,
+  getRelatedProductById,
+} from "../../action/product.action";
 import { addToCart } from "../../action/cart.action";
 import Reviews from "../../Components/Reviews/Reviews";
 import RelatedProducts from "../../Components/RelatedProduct/RelatedProducts";
@@ -12,6 +15,8 @@ import Ratings from "../../Components/Reviews/Ratings";
 const Product = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const [relateProducts, setRelatedProducts] = useState([]);
+  const relatedItems = useSelector((state) => state.relatedProducts);
   const params = location.search.split("?")[1].split("/")[0];
   const { product } = useSelector((state) => state.product);
   // destructure product image
@@ -24,9 +29,13 @@ const Product = () => {
   const hoverHandler = (image, i) => {
     setSingleProductImage(image);
   };
+  useEffect(() => {
+    setRelatedProducts(relatedItems);
+  }, [relatedItems]);
   // Find Product By ID
   useEffect(() => {
     dispatch(findProductById(params));
+    dispatch(getRelatedProductById(params));
   }, [dispatch, params]);
 
   const handleCart = () => {
@@ -46,7 +55,7 @@ const Product = () => {
   };
   return (
     <Layout>
-      <div className=" h-[100vh]">
+      <div className="">
         <MenuSection />
         <div className="container mx-auto py-5 ">
           <div className="flex ">
@@ -164,12 +173,12 @@ const Product = () => {
         <div className="bg-bgShop">
           <div className="container mx-auto">
             <div className="flex gap-7 mt-11 ">
-              <div className="w-[70%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)] rounded-sm">
-                <Reviews height="50px" product={product} />
+              <div className="w-[70%] ">
+                <Reviews product={product} />
               </div>
-              <div className="w-[30%] bg-white mt-10 drop-shadow-[1px_1px_3px_rgba(0,0,0,0.10)] rounded-sm">
+              <div className="w-[30%] ">
                 {" "}
-                <RelatedProducts />
+                <RelatedProducts relateProducts={relateProducts} />
               </div>
             </div>
           </div>

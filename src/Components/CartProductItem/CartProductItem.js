@@ -1,12 +1,10 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { addToCart, removeCartItem } from "../../action/cart.action";
 
 const CartProductItem = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { name, productPic, keyFeatures, quantity, price, product_id, stoke } =
     props.cartItem;
   const handleIncrement = () => {

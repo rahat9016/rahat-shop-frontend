@@ -4,15 +4,11 @@ import Logo from "../../Images/logo.png";
 import { MdCall } from "react-icons/md";
 import { RiMessage2Fill } from "react-icons/ri";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import Search from "../Search/Search";
-import Auth from "./components/auth";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Cart from "./components/cart";
 const Header = ({ home }) => {
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart.cartItems);
   return (
     <>
       {home ? (

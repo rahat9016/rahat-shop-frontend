@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signing } from "../../action/auth.action";
 import Input from "../../Components/Input/Input";
 import Layout from "../../Components/Layout/Layout";

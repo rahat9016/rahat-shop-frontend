@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory, getBrands, isUserLoggedIn } from "./action";

@@ -4,7 +4,7 @@ import { brandReducers } from "./brand.reducers";
 import { cartReducers } from "./cart.reducers";
 import { categoryReducers } from "./category.reducers";
 import { InitiateData } from "./initiateData.reducers";
-import { productReducers } from "./product.reducers";
+import { getRelatedProducts, productReducers } from "./product.reducers";
 
 const rootReducer = combineReducers({
   category: categoryReducers,
@@ -13,5 +13,6 @@ const rootReducer = combineReducers({
   product: productReducers,
   auth: authReducers,
   cart: cartReducers,
+  relatedProducts: getRelatedProducts,
 });
 export default rootReducer;
