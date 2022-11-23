@@ -8,7 +8,7 @@ const Home = () => {
     <Layout home>
       <div className="container mx-auto">
         {/* Hero Section */}
-        <div className="grid grid-cols-16 my-5 h-[60vh]">
+        <div className="grid grid-cols-16 my-5 h-auto">
           <MenuSection home />
           <HeroSection />
         </div>

@@ -19,6 +19,7 @@ module.exports = {
         btnBlue: "#3749bb",
         textBlue: "#3749bb",
         textGray: "#666",
+        footBg: "#081621",
       },
       fontFamily: {
         fira: ["Fira Sans Condensed", "sans-serif"],
