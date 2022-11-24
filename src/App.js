@@ -9,7 +9,8 @@ import Product from "./Pages/Product/Product";
 import Login from "./Pages/Authorization/Login";
 import Register from "./Pages/Authorization/Register";
 import Review from "./Pages/Review/Review";
-import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Profile from "./Pages/Profile/Profile";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -34,6 +35,7 @@ function App() {
         {/* Private routers */}
         <Route path="/*" element={<PrivateRoute />}>
           <Route path="review/:id" element={<Review />}></Route>
+          <Route path="account/profile" element={<Profile />}></Route>
         </Route>
       </Routes>
     </div>

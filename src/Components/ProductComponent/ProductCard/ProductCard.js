@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../action/cart.action";
+import { addToCart } from "../../../action/cart.action";
 const ProductCard = ({ product }) => {
   // const cartItem = useSelector((state) => console.log(state.cart));
   const dispatch = useDispatch();

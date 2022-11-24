@@ -10,8 +10,8 @@ import {
 } from "../../action/product.action";
 import { addToCart } from "../../action/cart.action";
 import Reviews from "../../Components/Reviews/Reviews";
-import RelatedProducts from "../../Components/RelatedProduct/RelatedProducts";
 import Ratings from "../../Components/Reviews/Ratings";
+import RelatedProducts from "../../Components/ProductComponent/RelatedProduct/RelatedProducts";
 const Product = () => {
   const dispatch = useDispatch();
   const location = useLocation();

@@ -5,7 +5,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import { IoLogoYoutube } from "react-icons/io";
 const Footer = () => {
   return (
-    <div className="bg-footBg mt-20">
+    <footer className="bg-footBg">
       <div className="container mx-auto pt-12">
         <div className="grid grid-cols-5 text-white gap-4">
           <div>
@@ -95,7 +95,7 @@ const Footer = () => {
           <span className="text-xs">Powered By: Human Search Tech</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

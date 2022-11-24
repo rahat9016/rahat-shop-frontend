@@ -10,7 +10,7 @@ import Cart from "./components/cart";
 const Header = ({ home }) => {
   const navigate = useNavigate();
   return (
-    <>
+    <header>
       {home ? (
         <div>
           {/* Top header */}
@@ -83,19 +83,11 @@ const Header = ({ home }) => {
               {/* Search Section */}
               <Search />
               <Cart />
-              {/* <div className="flex items-center gap-3 ml-8 ">
-                <AiOutlineHeart className="text-2xl text-white cursor-pointer" />
-                <AiOutlineShoppingCart
-                  className="text-2xl text-white cursor-pointer"
-                  onClick={() => navigate("/cart")}
-                />
-                <Auth />
-              </div> */}
             </div>
           </div>
         </div>
       )}
-    </>
+    </header>
   );
 };
 

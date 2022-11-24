@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingProductCard from "../LoadingProductCard/LoadingProductCard";
+import LoadingProductCard from "../../ProductComponent/LoadingProductCard/LoadingProductCard";
 
 const ProductLoadingPage = () => {
   return (

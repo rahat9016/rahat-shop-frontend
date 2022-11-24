@@ -7,18 +7,25 @@ import {
 } from "../../action/InitiateData";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
-import ProductCard from "../../Components/ProductCard/ProductCard";
-import ProductLoadingPage from "../../Components/ProductLoadingPage/ProductLoadingPage";
 import TopBar from "../../Components/TopBar/TopBar";
 import Slider from "@mui/material/Slider";
 import ToggleMenu from "../../Components/ToggleMenu/ToggleMenu";
-
+import ProductCard from "../../Components/ProductComponent/ProductCard/ProductCard";
+import ProductLoadingPage from "../../Components/ProductComponent/ProductLoadingPage/ProductLoadingPage";
 const Shop = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  const [price, setPrice] = useState([0, 0]);
+  const [price, setPrice] = useState([0, 50000]);
+  const [color, setColor] = useState([
+    "#5DADE2",
+    "#F2D7D5",
+    "#F4D03F",
+    "#8E44AD",
+    "#2ECC71",
+  ]);
   const getProducts = useSelector((state) => state.AllProductsData);
+  const brands = useSelector((state) => state.brands.brands);
   // destructor location
   const params = location.search.split("?")[1].split("/")[1];
   // 1. <----------- Load Product by Default on page load ------------->
@@ -27,8 +34,8 @@ const Shop = () => {
   }, [dispatch, params]);
 
   // 2. <----------- Load Product by Price on page load ------------->
-  const handlePrice = async (event, newPrice) => {
-    await setPrice(newPrice);
+  const handlePrice = (event, newPrice) => {
+    setPrice(newPrice);
   };
   useEffect(() => {
     loadPrice();
@@ -36,17 +43,20 @@ const Shop = () => {
   const loadPrice = () => {
     dispatch(InitiateDataFunc({ price: price, byCategoryId: params }));
   };
+  const handleBrand = (id) => {
+    console.log(id);
+  };
   // <-----------GET PRODUCTS AND SET IN STATE------------->
   useEffect(() => {
     setProducts(getProducts.products);
   }, [getProducts.products]);
   return (
     <Layout>
-      <div className="bg-bgShop h-[100%]">
+      <div className="bg-bgShop pb-20">
         <MenuSection />
         <div className="container mx-auto flex gap-4 w-full mt-5">
           <div className="w-[20%] ">
-            <div className="">
+            <div className="flex flex-col gap-2">
               <ToggleMenu title={"Price"}>
                 <Slider
                   getAriaLabel={() => "Temperature range"}
@@ -66,6 +76,52 @@ const Shop = () => {
                   </h1>
                 </div>
               </ToggleMenu>
+              <ToggleMenu title={"Availability"}>
+                <div className="flex gap-2 items-center mb-2">
+                  <input type="checkbox" id="inStoke" />
+                  <label for="inStoke">In Stoke</label>
+                </div>
+                <div className="flex gap-2 items-center mb-2">
+                  <input type="checkbox" id="inStoke" />
+                  <label for="inStoke">Pre Order</label>
+                </div>
+              </ToggleMenu>
+              <ToggleMenu title={"Brand"}>
+                <ul>
+                  {brands.length > 0
+                    ? brands.map((brand) => {
+                        return (
+                          <li
+                            onClick={() => handleBrand(brand._id)}
+                            className="cursor-pointer my-1"
+                          >
+                            {brand.name}
+                          </li>
+                        );
+                      })
+                    : null}
+                </ul>
+              </ToggleMenu>
+              <ToggleMenu title={"Color"}>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {color.map((c) => (
+                    <div
+                      style={{ background: `${c}` }}
+                      className="w-8 h-8 rounded-full"
+                    ></div>
+                  ))}
+                </div>
+              </ToggleMenu>
+              <ToggleMenu title={"Shipping"}>
+                <div className="flex gap-2 items-center mb-2">
+                  <input type="checkbox" id="yes" />
+                  <label for="yes">Yes</label>
+                </div>
+                <div className="flex gap-2 items-center mb-2">
+                  <input type="checkbox" id="no" />
+                  <label for="no">No</label>
+                </div>
+              </ToggleMenu>
             </div>
           </div>
           <div className="w-[80%]">
@@ -78,7 +134,9 @@ const Shop = () => {
                   products.map((product) => (
                     <ProductCard key={product._id} product={product} />
                   ))
-                ) : null
+                ) : (
+                  "null"
+                )
               ) : null}
             </div>
           </div>
