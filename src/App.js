@@ -11,6 +11,7 @@ import Register from "./Pages/Authorization/Register";
 import Review from "./Pages/Review/Review";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Pages/Profile/Profile";
+import SearchProduct from "./Pages/SearchProduct/SearchProduct";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
+        <Route path="/product/search" element={<SearchProduct />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/account/login" element={<Login />}></Route>
         <Route path="/new-account/register" element={<Register />}></Route>

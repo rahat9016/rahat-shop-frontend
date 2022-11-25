@@ -1,5 +1,10 @@
-import { getProductById, getRelatedProduct } from "./constnace";
+import {
+  getProductById,
+  getRelatedProduct,
+  productBySearch,
+} from "./constnace";
 import axios from "../helpers/axios";
+
 export const findProductById = (id) => {
   return async (dispatch) => {
     dispatch({
@@ -33,5 +38,17 @@ export const getRelatedProductById = (productId) => {
 export const productStar = (productId, star) => {
   return async (dispatch) => {
     await axios.put(`/product/start/${productId}`, { star });
+  };
+};
+export const searchProductBySearch = (query) => {
+  return async (dispatch) => {
+    await axios.post(`/search/getProduct`, query).then((res) => {
+      dispatch({
+        type: productBySearch.SEARCH_PRODUCT_SUCCESS,
+        payload: {
+          search: res.data.search,
+        },
+      });
+    });
   };
 };

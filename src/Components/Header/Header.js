@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Cart from "./components/cart";
 const Header = ({ home }) => {
   const navigate = useNavigate();
+
   return (
     <header>
       {home ? (

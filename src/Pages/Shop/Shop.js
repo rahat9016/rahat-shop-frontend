@@ -12,6 +12,7 @@ import Slider from "@mui/material/Slider";
 import ToggleMenu from "../../Components/ToggleMenu/ToggleMenu";
 import ProductCard from "../../Components/ProductComponent/ProductCard/ProductCard";
 import ProductLoadingPage from "../../Components/ProductComponent/ProductLoadingPage/ProductLoadingPage";
+import NotFoundProduct from "../../Components/ProductComponent/NotFoundProduct/NotFoundProduct";
 const Shop = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const Shop = () => {
     "#F2D7D5",
     "#F4D03F",
     "#8E44AD",
+    "#2ECC71",
+    "#2ECC71",
+    "#2ECC71",
     "#2ECC71",
   ]);
   const getProducts = useSelector((state) => state.AllProductsData);
@@ -43,8 +47,12 @@ const Shop = () => {
   const loadPrice = () => {
     dispatch(InitiateDataFunc({ price: price, byCategoryId: params }));
   };
+
   const handleBrand = (id) => {
-    console.log(id);
+    dispatch(InitiateDataFunc({ brand: id }));
+  };
+  const handleChangeCheckbox = (e) => {
+    dispatch(InitiateDataFunc({ shipping: e.target.value }));
   };
   // <-----------GET PRODUCTS AND SET IN STATE------------->
   useEffect(() => {
@@ -82,8 +90,8 @@ const Shop = () => {
                   <label for="inStoke">In Stoke</label>
                 </div>
                 <div className="flex gap-2 items-center mb-2">
-                  <input type="checkbox" id="inStoke" />
-                  <label for="inStoke">Pre Order</label>
+                  <input type="checkbox" id="preOrder" />
+                  <label for="preOrder">Pre Order</label>
                 </div>
               </ToggleMenu>
               <ToggleMenu title={"Brand"}>
@@ -107,18 +115,28 @@ const Shop = () => {
                   {color.map((c) => (
                     <div
                       style={{ background: `${c}` }}
-                      className="w-8 h-8 rounded-full"
+                      className="w-7 h-7 rounded-full"
                     ></div>
                   ))}
                 </div>
               </ToggleMenu>
               <ToggleMenu title={"Shipping"}>
                 <div className="flex gap-2 items-center mb-2">
-                  <input type="checkbox" id="yes" />
+                  <input
+                    type="checkbox"
+                    id="yes"
+                    onChange={handleChangeCheckbox}
+                    value="Yes"
+                  />
                   <label for="yes">Yes</label>
                 </div>
                 <div className="flex gap-2 items-center mb-2">
-                  <input type="checkbox" id="no" />
+                  <input
+                    type="checkbox"
+                    id="no"
+                    onChange={handleChangeCheckbox}
+                    value="No"
+                  />
                   <label for="no">No</label>
                 </div>
               </ToggleMenu>
@@ -134,11 +152,10 @@ const Shop = () => {
                   products.map((product) => (
                     <ProductCard key={product._id} product={product} />
                   ))
-                ) : (
-                  "null"
-                )
+                ) : null
               ) : null}
             </div>
+            <div>{products.length > 0 ? null : <NotFoundProduct />}</div>
           </div>
         </div>
       </div>

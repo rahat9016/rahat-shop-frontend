@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar } from "react-icons/ai";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findProductById,
@@ -17,7 +17,7 @@ const Product = () => {
   const location = useLocation();
   const [relateProducts, setRelatedProducts] = useState([]);
   const relatedItems = useSelector((state) => state.relatedProducts);
-  const params = location.search.split("?")[1].split("/")[0];
+  const params = location.search.split("=")[1];
   const { product } = useSelector((state) => state.product);
   // destructure product image
   const proImg = product && product?.productPictures[0].img;

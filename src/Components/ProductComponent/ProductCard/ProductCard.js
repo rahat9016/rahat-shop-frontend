@@ -3,14 +3,13 @@ import Button from "../../Button/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../action/cart.action";
+import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
-  // const cartItem = useSelector((state) => console.log(state.cart));
   const dispatch = useDispatch();
   const { _id, name, price, productPictures, keyFeatures } = product;
   const productImage = productPictures.map((img) => {
     return img.img;
   });
-
   const handleClick = () => {
     dispatch(addToCart(_id, 1));
   };
@@ -25,12 +24,12 @@ const ProductCard = ({ product }) => {
           />
         </div>
         <div>
-          <a
-            href={`product_id?${_id}/product_name=${name}`}
+          <Link
+            to={`/product_id?productId=${_id}`}
             className="hover:text-orange text-lg font-semibold font-roboto"
           >
             {name}
-          </a>
+          </Link>
         </div>
         <div className="pl-4 pb-1">
           <ul className="list-disc text-primaryLight text-[15px]">

@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addToCart, removeCartItem } from "../../action/cart.action";
 
 const CartProductItem = (props) => {
@@ -25,12 +26,12 @@ const CartProductItem = (props) => {
           <img src={productPic && productPic[0].img} alt="" className="w-16" />
         </div>
         <div className="basis-1/2  px-2 py-3 mx-[2px] rounded-sm">
-          <a
-            href={`product_id?${product_id}/product_name=${name}`}
+          <Link
+            to={`/product_id?productId=${product_id}`}
             className="hover:underline underline-offset-1 text-base font-medium font-roboto"
           >
             {name}
-          </a>{" "}
+          </Link>{" "}
           <br />
           <span
             className="text-orange cursor-pointer"

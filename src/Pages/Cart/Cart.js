@@ -13,11 +13,11 @@ const Cart = () => {
     }, 0);
   };
   return (
-    <Layout class="bg-bgShop h-[100vh]">
+    <Layout class="bg-bgShop h-full ">
       <div className="flex justify-between ">
         <MenuSection />
       </div>
-      <div className=" ">
+      <div className="">
         {cart.length > 0 ? (
           <div className="container mx-auto  mt-8 bg-white rounded-sm p-4">
             <h1 className="text-2xl font-fira">Shopping Cart</h1>

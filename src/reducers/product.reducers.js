@@ -1,10 +1,14 @@
-import { getProductById, getRelatedProduct } from "../action/constnace";
+import {
+  getProductById,
+  getRelatedProduct,
+  productBySearch,
+} from "../action/constnace";
 const initialState = {
   product: null,
   loading: false,
 };
 
-export const productReducers = (state = initialState, action) => {
+export const findProductById = (state = initialState, action) => {
   switch (action.type) {
     case getProductById.GET_PRODUCT_BY_ID_REQUEST:
       return {
@@ -37,6 +41,26 @@ export const getRelatedProducts = (state = initialRelatedState, action) => {
         ...state,
         loading: false,
         products: action.payload.products,
+      };
+    default:
+      return state;
+  }
+};
+export const searchProductBySearch = (
+  state = { products: [], loading: false },
+  action
+) => {
+  switch (action.type) {
+    case productBySearch.SEARCH_PRODUCT_FAILURE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case productBySearch.SEARCH_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        products: action.payload.search,
       };
     default:
       return state;
