@@ -1,0 +1,29 @@
+.productItemContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "side content1 content2"
+    "side content3 content4";
+}
+.productItemContainer > :nth-child(1) {
+  grid-area: side;
+  margin-right: 30px;
+  border: 1px solid #eeeff2;
+}
+.productItemContainer > :nth-child(1) h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.productItemContainer > :nth-child(2) {
+  grid-area: content1;
+}
+.productItemContainer > :nth-child(3) {
+  grid-area: content2;
+}
+.productItemContainer > :nth-child(4) {
+  grid-area: content3;
+}
+.productItemContainer > :nth-child(5) {
+  grid-area: content4;
+}
