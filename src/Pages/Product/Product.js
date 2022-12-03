@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar } from "react-icons/ai";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation,  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findProductById,
