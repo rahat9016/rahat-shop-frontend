@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar } from "react-icons/ai";
-import { useLocation,  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findProductById,
@@ -55,7 +55,7 @@ const Product = () => {
   };
   return (
     <Layout>
-      <div className="">
+      <div>
         <MenuSection />
         <div className="container mx-auto py-5 ">
           <div className="flex ">

@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CartProductItem from "../../Components/CartProductItem/CartProductItem";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 import ShoppingCartEmpty from "../../Components/ShoppingCartEmpty/ShoppingCartEmpty";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cartItems);
   const getTotal = () => {
     return cart.reduce((currentValue, NextValue) => {
@@ -13,13 +15,13 @@ const Cart = () => {
     }, 0);
   };
   return (
-    <Layout class="bg-bgShop h-full ">
-      <div className="flex justify-between ">
+    <Layout class={`bg-bgShop ${cart.length > 0 ? "h-full	 " : "h-[500px]"}`}>
+      <div className={"flex justify-between"}>
         <MenuSection />
       </div>
-      <div className="">
+      <div>
         {cart.length > 0 ? (
-          <div className="container mx-auto  mt-8 bg-white rounded-sm p-4">
+          <div className="container mx-auto  bg-white rounded-sm p-4">
             <h1 className="text-2xl font-fira">Shopping Cart</h1>
             <div>
               <ul className="flex flex-row mt-4">
@@ -52,17 +54,26 @@ const Cart = () => {
                 : null}
             </div>
             <div className="flex justify-end ">
-              <div>
-                <h1 className="my-10 border-b border-lightGray pb-5 text-xl  ">
-                  Total :-{" "}
-                  <span className="text-orange font-semibold">
-                    {getTotal()}
-                  </span>
-                </h1>
-                <button className="font-fira font-base text-lg bg-btnBlue px-16 py-2 text-white mb-6 rounded-md">
-                  Continue
-                </button>
-              </div>
+              <h1 className="my-10 border-b border-lightGray pb-5 text-xl  ">
+                Total :-{" "}
+                <span className="text-orange font-semibold">{getTotal()}</span>
+              </h1>
+            </div>
+            <div className="flex justify-between	">
+              {" "}
+              <button
+                className="font-fira font-sm text-lg bg-btnBlue px-4 py-2 text-white mb-6 rounded"
+                onClick={() => navigate("/")}
+              >
+                Continue Shopping
+              </button>
+              <br />
+              <button
+                className="font-fira font-sm text-lg bg-btnBlue px-4 py-2 text-white mb-6 rounded"
+                onClick={() => navigate("/checkout")}
+              >
+                Confirm Order
+              </button>
             </div>
           </div>
         ) : (
