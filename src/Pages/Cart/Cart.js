@@ -9,10 +9,19 @@ import ShoppingCartEmpty from "../../Components/ShoppingCartEmpty/ShoppingCartEm
 const Cart = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cartItems);
+  const auth = useSelector((state) => state.auth);
+
   const getTotal = () => {
     return cart.reduce((currentValue, NextValue) => {
       return currentValue + NextValue.quantity * NextValue.price;
     }, 0);
+  };
+  const handleCartRequestToDb = () => {
+    if (auth.authenticate && auth.authenticate) {
+      navigate("/checkout");
+    } else {
+      navigate("/account/login");
+    }
   };
   return (
     <Layout class={`bg-bgShop ${cart.length > 0 ? "h-full	 " : "h-[500px]"}`}>
@@ -70,7 +79,7 @@ const Cart = () => {
               <br />
               <button
                 className="font-fira font-sm text-lg bg-btnBlue px-4 py-2 text-white mb-6 rounded"
-                onClick={() => navigate("/checkout")}
+                onClick={handleCartRequestToDb}
               >
                 Confirm Order
               </button>

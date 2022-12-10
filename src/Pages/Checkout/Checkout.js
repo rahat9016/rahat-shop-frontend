@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Address from "../../Components/Checkout/Address";
 import CheckoutHeader from "../../Components/Checkout/CheckoutHeader";
+import Coupon from "../../Components/Checkout/Coupon";
+import DeliveryMethod from "../../Components/Checkout/DeliveryMethod";
 import OrderOverview from "../../Components/Checkout/OrderOverview";
+import PaymentMethod from "../../Components/Checkout/PaymentMethod";
 import Input from "../../Components/Input/Input";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
 
 const Checkout = () => {
+  const [delivery, setDelivery] = useState(60);
+  const cart = useSelector((state) => state.cart.cartItems);
+  const auth = useSelector((state) => state.auth);
+  const getTotal = () => {
+    return cart.reduce((currentValue, NextValue) => {
+      return currentValue + NextValue.quantity * NextValue.price;
+    }, 0);
+  };
+  const handleChange = (e) => {
+    setDelivery(e.target.value);
+  };
+  console.log(cart);
   return (
     <Layout class={`bg-bgShop`}>
       <div className={"flex justify-between"}>
@@ -23,29 +39,24 @@ const Checkout = () => {
             {/* Payment Method */}
             <div className="w-[75%] mb-10">
               <div className="flex flex-wrap justify-between">
-                <div className="w-[49.5%] shadow-sm">
-                  <CheckoutHeader number="2" title="Payment Method" />
+                <div className="w-[49.5%] shadow-sm ">
+                  <CheckoutHeader number="2" title="Payment Method">
+                    <PaymentMethod />
+                  </CheckoutHeader>
                 </div>
                 {/* Delivery Method  */}
-                <div className="w-[49.5%] shadow-sm">
-                  <CheckoutHeader number="3" title="Delivery Method" />
+                <div className="w-[49.5%]">
+                  <CheckoutHeader number="3" title="Delivery Method">
+                    <DeliveryMethod handleChange={handleChange} />
+                  </CheckoutHeader>
+                  <Coupon />
                 </div>
 
-                <div className="w-full flex h-20 bg-white mt-5 mb-5 items-center p-4 rounded-lg gap-3 shadow-sm">
-                  <Input
-                    text="text"
-                    name="coupon"
-                    class="p-2  border border-gray rounded-md outline-none focus:border-gray w-1/5	h-8"
-                    placeholder="Promo / Coupon code"
-                  />
-                  <button
-                    className="text-base border-2 rounded border-btnBlue text-textBlue font-medium h-8 text-center px-3"
-                    // onClick={handleCart}
-                  >
-                    Apply Coupon
-                  </button>
-                </div>
-                <OrderOverview />
+                <OrderOverview
+                  cart={cart}
+                  subTotal={getTotal}
+                  delivery={delivery}
+                />
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { findProductById, productStar } from "../../action/product.action";
 const Review = () => {
   const { product } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.auth);
-  // console.log(product);
+
   const { id } = useParams();
   const [star, setStar] = useState(0);
   const navigate = useNavigate();

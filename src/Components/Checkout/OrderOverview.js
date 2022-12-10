@@ -1,7 +1,7 @@
 import React from "react";
 import CheckoutHeader from "./CheckoutHeader";
 
-const OrderOverview = () => {
+const OrderOverview = ({ cart, subTotal, delivery }) => {
   return (
     <div className="w-full bg-white shadow-sm">
       <CheckoutHeader number="4" title="Order Overview" />
@@ -18,20 +18,32 @@ const OrderOverview = () => {
             Total
           </li>
         </ul>
-        <div className="flex flex-row ">
-          <div className="basis-3/5 px-2 py-3 mx-[2px] rounded-sm  ">
-            <h1 className="text-darkBlack font-medium	">
-              Samsung Galaxy Book Pro 180 Core i7 11th Gen 2-in-1 15.6" FHD
-              Touch Laptop
-            </h1>
-            <span className="text-[#66666D]">Earned Discount</span>
-          </div>
-          <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm ">
-            <h1>192,000tk x 1</h1>
-          </div>
-          <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm">
-            <h1> {Math.round(192000 * 2).toLocaleString("en-US")}tk</h1>
-          </div>
+        <div>
+          {cart &&
+            cart.map((cartItem) => (
+              <div className="flex flex-row ">
+                <div className="basis-3/5 px-2 py-3 mx-[2px] rounded-sm  ">
+                  <h1 className="text-darkBlack font-medium	">
+                    {cartItem.name}
+                  </h1>
+                  <span className="text-[#66666D]">Earned Discount</span>
+                </div>
+                <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm ">
+                  <h1>
+                    {cartItem.price}tk x {cartItem.quantity}
+                  </h1>
+                </div>
+                <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm">
+                  <h1>
+                    {" "}
+                    {Math.round(
+                      cartItem.price * cartItem.quantity
+                    ).toLocaleString("en-US")}
+                    tk
+                  </h1>
+                </div>
+              </div>
+            ))}
         </div>
 
         <div>
@@ -41,16 +53,20 @@ const OrderOverview = () => {
             </div>
             <div className="basis-1/5	 text-center">
               <span className="text-xl font-semibold text-orange">
-                59,000tk
+                {Math.round(subTotal()).toLocaleString("en-US")}
+                {}&#36;
               </span>
             </div>
           </div>
           <div className="flex border-b border-lightGray pb-2">
             <div className="basis-4/5 text-right">
-              <h1 className="text-xl	">Home Delivery:-</h1>
+              <h1 className="text-xl	">Delivery charges:-</h1>
             </div>
             <div className="basis-1/5 text-center">
-              <span className="text-xl font-semibold text-orange">0tk</span>
+              <span className="text-xl font-semibold text-orange">
+                {Math.round(delivery).toLocaleString("en-US")}
+                &#36;
+              </span>
             </div>
           </div>
           <div className="flex border-b border-lightGray pb-2">
@@ -58,7 +74,9 @@ const OrderOverview = () => {
               <h1 className="text-xl	">Total:-</h1>
             </div>
             <div className="basis-1/5 text-center">
-              <span className="text-xl font-semibold text-orange">20000tk</span>
+              <span className="text-xl font-semibold text-orange">
+                {Math.round(subTotal() + delivery).toLocaleString("en-US")}&#36;
+              </span>
             </div>
           </div>
         </div>

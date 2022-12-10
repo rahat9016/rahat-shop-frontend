@@ -13,6 +13,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Pages/Profile/Profile";
 import SearchProduct from "./Pages/SearchProduct/SearchProduct";
 import Checkout from "./Pages/Checkout/Checkout";
+
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -25,6 +26,7 @@ function App() {
     dispatch(getAllCategory());
     dispatch(getBrands());
   }, [dispatch]);
+
   return (
     <div>
       <Routes>
@@ -35,11 +37,12 @@ function App() {
         <Route path="/account/login" element={<Login />}></Route>
         <Route path="/new-account/register" element={<Register />}></Route>
         <Route path="/product_id" element={<Product />}></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
+        {/* <Route path="/checkout" element={<Checkout />}></Route> */}
         {/* Private routers */}
         <Route path="/*" element={<PrivateRoute />}>
           <Route path="review/:id" element={<Review />}></Route>
           <Route path="account/profile" element={<Profile />}></Route>
+          <Route path="checkout" element={<Checkout />}></Route>
         </Route>
       </Routes>
     </div>

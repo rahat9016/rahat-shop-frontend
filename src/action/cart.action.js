@@ -23,6 +23,22 @@ export const addToCart = (id, qty) => {
   };
 };
 
+export const userCart = (cart) => {
+  return async (dispatch) => {
+    await axios.post("/user/cart", { cart });
+  };
+};
+export const getUserCart = () => {
+  return async (dispatch) => {
+    const res = await axios.get("/user/cart");
+
+    if (res.status === 200) {
+      dispatch({
+        type: cartConstance.GET_CART_ITEM_FROM_DB,
+      });
+    }
+  };
+};
 export const removeCartItem = (id) => {
   return async (dispatch, getState) => {
     dispatch({

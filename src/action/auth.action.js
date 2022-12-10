@@ -8,10 +8,8 @@ export const signing = (user) => {
     await axios
       .post("/user/signing", user)
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           const { token, user } = res.data;
-          console.log(user);
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
           dispatch({
@@ -81,7 +79,7 @@ export const signup = (user) => {
       });
   };
 };
-export const logout = (user) => {
+export const logout = () => {
   return async (dispatch) => {
     dispatch({
       type: Logout.LOGOUT_REQUEST,
