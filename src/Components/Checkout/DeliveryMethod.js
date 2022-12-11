@@ -23,7 +23,7 @@ const DeliveryMethod = (props) => {
               name="shipping"
               id="store"
               value={0}
-              onClick={props.handleChange && props.handleChange}
+              onChange={props.handleChange && props.handleChange}
             />
             Store Pickup - 0৳
           </label>
@@ -36,7 +36,7 @@ const DeliveryMethod = (props) => {
               name="shipping"
               id="reqExpress"
               value={0}
-              onClick={props.handleChange && props.handleChange}
+              onChange={props.handleChange && props.handleChange}
             />
             Request Express - Charge Applicable
           </label>

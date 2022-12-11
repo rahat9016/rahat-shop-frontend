@@ -1,7 +1,8 @@
 import React from "react";
 import CheckoutHeader from "./CheckoutHeader";
 
-const OrderOverview = ({ cart, subTotal, delivery }) => {
+const OrderOverview = ({ cart, subTotal, delivery, afterDiscount }) => {
+  const totalAmount = subTotal() - afterDiscount + delivery;
   return (
     <div className="w-full bg-white shadow-sm">
       <CheckoutHeader number="4" title="Order Overview" />
@@ -20,8 +21,8 @@ const OrderOverview = ({ cart, subTotal, delivery }) => {
         </ul>
         <div>
           {cart &&
-            cart.map((cartItem) => (
-              <div className="flex flex-row ">
+            cart.map((cartItem, index) => (
+              <div className="flex flex-row " key={index}>
                 <div className="basis-3/5 px-2 py-3 mx-[2px] rounded-sm  ">
                   <h1 className="text-darkBlack font-medium	">
                     {cartItem.name}
@@ -51,7 +52,7 @@ const OrderOverview = ({ cart, subTotal, delivery }) => {
             <div className="basis-4/5 text-right">
               <h1 className="text-xl	">Sub-Total:-</h1>
             </div>
-            <div className="basis-1/5	 text-center">
+            <div className="basis-1/5	 text-left ml-4">
               <span className="text-xl font-semibold text-orange">
                 {Math.round(subTotal()).toLocaleString("en-US")}
                 {}&#36;
@@ -62,7 +63,7 @@ const OrderOverview = ({ cart, subTotal, delivery }) => {
             <div className="basis-4/5 text-right">
               <h1 className="text-xl	">Delivery charges:-</h1>
             </div>
-            <div className="basis-1/5 text-center">
+            <div className="basis-1/5 text-left ml-4">
               <span className="text-xl font-semibold text-orange">
                 {Math.round(delivery).toLocaleString("en-US")}
                 &#36;
@@ -73,9 +74,10 @@ const OrderOverview = ({ cart, subTotal, delivery }) => {
             <div className="basis-4/5 text-right">
               <h1 className="text-xl	">Total:-</h1>
             </div>
-            <div className="basis-1/5 text-center">
+            <div className="basis-1/5 text-left ml-4">
               <span className="text-xl font-semibold text-orange">
-                {Math.round(subTotal() + delivery).toLocaleString("en-US")}&#36;
+                {Math.round(totalAmount).toLocaleString("en-US")}
+                &#36;
               </span>
             </div>
           </div>

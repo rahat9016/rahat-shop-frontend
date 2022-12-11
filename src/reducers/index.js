@@ -3,6 +3,7 @@ import { authReducers } from "./auth.reducers";
 import { brandReducers } from "./brand.reducers";
 import { cartReducers } from "./cart.reducers";
 import { categoryReducers } from "./category.reducers";
+import { applyCouponReducer } from "./coupon.reducers";
 import { InitiateData } from "./initiateData.reducers";
 import {
   findProductById,
@@ -19,5 +20,6 @@ const rootReducer = combineReducers({
   cart: cartReducers,
   relatedProducts: getRelatedProducts,
   searchProduct: searchProductBySearch,
+  applyCoupon: applyCouponReducer,
 });
 export default rootReducer;
