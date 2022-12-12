@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../Input/Input";
 import CheckoutHeader from "./CheckoutHeader";
 
-const Address = () => {
+const Address = ({ handleUserInformation, values }) => {
   return (
     <form>
       <div className="p-4 bg-white shadow-sm">
@@ -16,8 +16,9 @@ const Address = () => {
               type="text"
               placeholder="First Name"
               class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
-              //   handleChange={handleChange}
+              handleChange={handleUserInformation}
               name="firstName"
+              value={values?.firstName}
             />
           </div>
           <div>
@@ -29,22 +30,12 @@ const Address = () => {
               placeholder="Last Name"
               class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
               name="lastName"
-              //   handleChange={handleChange}
+              value={values?.lastName}
+              handleChange={handleUserInformation}
             />
           </div>
         </div>
-        <div className="mb-3">
-          <label className="mt-4 after:content-['*'] after:ml-0.5 after:text-red-500">
-            Address
-          </label>
-          <Input
-            type="text"
-            placeholder="Address"
-            class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
-            name="address"
-            //   handleChange={handleChange}
-          />
-        </div>
+
         <div className="mb-3">
           <label className="mt-4 after:content-['*'] after:ml-0.5 after:text-red-500">
             Mobile
@@ -54,7 +45,8 @@ const Address = () => {
             placeholder="Telephone"
             class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
             name="number"
-            //   handleChange={handleChange}
+            value={values?.number}
+            handleChange={handleUserInformation}
           />
         </div>
         <div className="mb-3">
@@ -66,7 +58,8 @@ const Address = () => {
             placeholder="E-mail"
             class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
             name="email"
-            //   handleChange={handleChange}
+            value={values?.email}
+            handleChange={handleUserInformation}
           />
         </div>
         <div className="flex gap-2 mb-3">
@@ -78,20 +71,39 @@ const Address = () => {
               type="text"
               placeholder="City"
               class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
-              //   handleChange={handleChange}
+              handleChange={handleUserInformation}
               name="city"
+              value={values?.city}
             />
           </div>
           <div>
             <label className="after:content-['*'] after:ml-0.5 after:text-red-500 ">
               Zone
             </label>
-            <select className="p-2 border border-gray rounded-md outline-none focus:border-gray w-full">
-              <option value="">Dhaka</option>
-              <option value="">Chittagong</option>
-              <option value="">Borishal</option>
+            <select
+              className="p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
+              onChange={handleUserInformation}
+              name="zone"
+              value={values?.zone}
+            >
+              <option value="dhaka">Dhaka</option>
+              <option value="chittagong">Chittagong</option>
+              <option value="borishal">Borishal</option>
             </select>
           </div>
+        </div>
+        <div className="mb-3">
+          <label className="mt-4 after:content-['*'] after:ml-0.5 after:text-red-500">
+            Full Address
+          </label>
+          <Input
+            type="text"
+            placeholder="Full Address"
+            class=" p-2 border border-gray rounded-md outline-none focus:border-gray w-full"
+            value={values?.address}
+            name="address"
+            handleChange={handleUserInformation}
+          />
         </div>
       </div>
     </form>

@@ -1,8 +1,13 @@
 import React from "react";
 import CheckoutHeader from "./CheckoutHeader";
 
-const OrderOverview = ({ cart, subTotal, delivery, afterDiscount }) => {
-  const totalAmount = subTotal() - afterDiscount + delivery;
+const OrderOverview = ({
+  cart,
+  subTotal,
+  delivery,
+  afterDiscount,
+  totalAmount,
+}) => {
   return (
     <div className="w-full bg-white shadow-sm">
       <CheckoutHeader number="4" title="Order Overview" />

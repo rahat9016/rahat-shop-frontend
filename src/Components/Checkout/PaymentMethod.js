@@ -6,14 +6,14 @@ const PaymentMethod = (props) => {
       <div className="p-2">
         <legend className="py-1">Select a payment method</legend>
         <div className="p-2">
-          <label className="cursor-pointer mb-1 flex gap-2 " htmlFor="case">
+          <label className="cursor-pointer mb-1 flex gap-2 " htmlFor="cash">
             <input
               type={"radio"}
               name="payment"
               defaultChecked={true}
-              id="case"
-              value={"case"}
-              onChange={props.handleChange && props.handleChange}
+              id="cash"
+              value={"Home Delivery"}
+              onChange={(e) => props.setPayment(e.target.value)}
             />
             Cash on Delivery
           </label>
@@ -22,8 +22,8 @@ const PaymentMethod = (props) => {
               type={"radio"}
               name="payment"
               id="online"
-              value={"online"}
-              onClick={props.handleChange && props.handleChange}
+              value={"Online Payment"}
+              onClick={(e) => props.setPayment(e.target.value)}
             />
             Online Payment
           </label>
@@ -35,8 +35,8 @@ const PaymentMethod = (props) => {
               type={"radio"}
               name="payment"
               id="reqExpress"
-              value={"pos"}
-              onClick={props.handleChange && props.handleChange}
+              value={"POS on Delivery"}
+              onClick={(e) => props.setPayment(e.target.value)}
             />
             POS on Delivery
           </label>

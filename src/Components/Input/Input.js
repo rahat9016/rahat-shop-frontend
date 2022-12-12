@@ -9,6 +9,7 @@ const Input = (props) => {
         className={props.class}
         onChange={props.handleChange}
         name={props.name}
+        value={props.value}
       />
     </>
   );

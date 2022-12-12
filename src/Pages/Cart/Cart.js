@@ -81,7 +81,7 @@ const Cart = () => {
                 className="font-fira font-sm text-lg bg-btnBlue px-4 py-2 text-white mb-6 rounded"
                 onClick={handleCartRequestToDb}
               >
-                Confirm Order
+                Checkout
               </button>
             </div>
           </div>
