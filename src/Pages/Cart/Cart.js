@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userCart } from "../../action/cart.action";
 import CartProductItem from "../../Components/CartProductItem/CartProductItem";
 import Layout from "../../Components/Layout/Layout";
 import MenuSection from "../../Components/Menu/MenuSection";
@@ -16,13 +17,18 @@ const Cart = () => {
       return currentValue + NextValue.quantity * NextValue.price;
     }, 0);
   };
-  const handleCartRequestToDb = () => {
+  const saveOrderDB = () => {
     if (auth.authenticate && auth.authenticate) {
-      navigate("/checkout");
+      userCart(cart).then((res) => {
+        if (res.status === 201) {
+          navigate("/checkout");
+        }
+      });
     } else {
       navigate("/account/login");
     }
   };
+
   return (
     <Layout class={`bg-bgShop ${cart.length > 0 ? "h-full	 " : "h-[500px]"}`}>
       <div className={"flex justify-between"}>
@@ -79,9 +85,9 @@ const Cart = () => {
               <br />
               <button
                 className="font-fira font-sm text-lg bg-btnBlue px-4 py-2 text-white mb-6 rounded"
-                onClick={handleCartRequestToDb}
+                onClick={saveOrderDB}
               >
-                Checkout
+                Place to Checkout
               </button>
             </div>
           </div>

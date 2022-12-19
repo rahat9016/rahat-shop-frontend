@@ -23,22 +23,14 @@ export const addToCart = (id, qty) => {
   };
 };
 
-export const userCart = (cart) => {
-  return async (dispatch) => {
-    await axios.post("/user/cart", { cart });
-  };
+export const userCart = async (cart) => {
+  return await axios.post("/user/cart", { cart });
 };
-export const getUserCart = () => {
-  return async (dispatch) => {
-    const res = await axios.get("/user/cart");
 
-    if (res.status === 200) {
-      dispatch({
-        type: cartConstance.GET_CART_ITEM_FROM_DB,
-      });
-    }
-  };
+export const getUserCart = async () => {
+  return await axios.get("/user/cart");
 };
+
 export const removeCartItem = (id) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -49,5 +41,13 @@ export const removeCartItem = (id) => {
       "cartItems",
       JSON.stringify(getState().cart.cartItems)
     );
+  };
+};
+export const deleteCardItem = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: cartConstance.DELETE_CARD_ITEM,
+    });
+    localStorage.removeItem("cartItems");
   };
 };

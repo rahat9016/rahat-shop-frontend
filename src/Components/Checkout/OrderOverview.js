@@ -1,13 +1,8 @@
 import React from "react";
 import CheckoutHeader from "./CheckoutHeader";
 
-const OrderOverview = ({
-  cart,
-  subTotal,
-  delivery,
-  afterDiscount,
-  totalAmount,
-}) => {
+const OrderOverview = ({ cart, delivery, totalAmount }) => {
+  const cartItems = cart.products;
   return (
     <div className="w-full bg-white shadow-sm">
       <CheckoutHeader number="4" title="Order Overview" />
@@ -25,31 +20,34 @@ const OrderOverview = ({
           </li>
         </ul>
         <div>
-          {cart &&
-            cart.map((cartItem, index) => (
-              <div className="flex flex-row " key={index}>
-                <div className="basis-3/5 px-2 py-3 mx-[2px] rounded-sm  ">
-                  <h1 className="text-darkBlack font-medium	">
-                    {cartItem.name}
-                  </h1>
-                  <span className="text-[#66666D]">Earned Discount</span>
+          {cartItems &&
+            cartItems.map((cartItem, index) => {
+              console.log(cartItem);
+              return (
+                <div className="flex flex-row " key={index}>
+                  <div className="basis-3/5 px-2 py-3 mx-[2px] rounded-sm  ">
+                    <h1 className="text-darkBlack font-medium	">
+                      {cartItem.product.name}
+                    </h1>
+                    <span className="text-[#66666D]">Earned Discount</span>
+                  </div>
+                  <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm ">
+                    <h1>
+                      {cartItem.product.price}tk x {cartItem.quantity}
+                    </h1>
+                  </div>
+                  <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm">
+                    <h1>
+                      {" "}
+                      {Math.round(
+                        cartItem.product.price * cartItem.quantity
+                      ).toLocaleString("en-US")}
+                      tk
+                    </h1>
+                  </div>
                 </div>
-                <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm ">
-                  <h1>
-                    {cartItem.price}tk x {cartItem.quantity}
-                  </h1>
-                </div>
-                <div className="basis-1/5 px-2 py-3 mx-[2px] rounded-sm">
-                  <h1>
-                    {" "}
-                    {Math.round(
-                      cartItem.price * cartItem.quantity
-                    ).toLocaleString("en-US")}
-                    tk
-                  </h1>
-                </div>
-              </div>
-            ))}
+              );
+            })}
         </div>
 
         <div>
@@ -59,7 +57,7 @@ const OrderOverview = ({
             </div>
             <div className="basis-1/5	 text-left ml-4">
               <span className="text-xl font-semibold text-orange">
-                {Math.round(subTotal()).toLocaleString("en-US")}
+                {Math.round(cart?.cartTotal || 0).toLocaleString("en-US")}
                 {}&#36;
               </span>
             </div>
@@ -81,7 +79,7 @@ const OrderOverview = ({
             </div>
             <div className="basis-1/5 text-left ml-4">
               <span className="text-xl font-semibold text-orange">
-                {Math.round(totalAmount).toLocaleString("en-US")}
+                {Math.round(totalAmount || 0).toLocaleString("en-US")}
                 &#36;
               </span>
             </div>

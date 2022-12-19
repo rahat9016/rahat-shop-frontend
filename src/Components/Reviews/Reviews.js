@@ -96,7 +96,7 @@ const Reviews = ({ product }) => {
         <div
           className={toggleState === 2 ? "content  active-content" : "content"}
         >
-          ss
+          ASK QUESTION
         </div>
       </div>
     </div>

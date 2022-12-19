@@ -27,6 +27,11 @@ export const cartReducers = (state = { cartItems: [] }, action) => {
           (i) => i.product_id !== action.payload
         ),
       };
+    case cartConstance.DELETE_CARD_ITEM:
+      return {
+        ...state,
+        cartItems: [],
+      };
     default:
       return state;
   }

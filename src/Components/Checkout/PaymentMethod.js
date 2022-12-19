@@ -2,7 +2,7 @@ import React from "react";
 import CartLogo from "../../Images/card-logo.png";
 const PaymentMethod = (props) => {
   return (
-    <div className="bg-white shadow-sm rounded-lg">
+    <div className="bg-white">
       <div className="p-2">
         <legend className="py-1">Select a payment method</legend>
         <div className="p-2">
@@ -10,7 +10,8 @@ const PaymentMethod = (props) => {
             <input
               type={"radio"}
               name="payment"
-              defaultChecked={true}
+              // defaultChecked={true}
+              required="required"
               id="cash"
               value={"Home Delivery"}
               onChange={(e) => props.setPayment(e.target.value)}
@@ -23,7 +24,7 @@ const PaymentMethod = (props) => {
               name="payment"
               id="online"
               value={"Online Payment"}
-              onClick={(e) => props.setPayment(e.target.value)}
+              onChange={(e) => props.setPayment(e.target.value)}
             />
             Online Payment
           </label>
@@ -36,7 +37,7 @@ const PaymentMethod = (props) => {
               name="payment"
               id="reqExpress"
               value={"POS on Delivery"}
-              onClick={(e) => props.setPayment(e.target.value)}
+              onChange={(e) => props.setPayment(e.target.value)}
             />
             POS on Delivery
           </label>

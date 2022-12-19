@@ -144,18 +144,24 @@ const Shop = () => {
           </div>
           <div className="w-[80%]">
             <TopBar />
-            <div className="grid grid-cols-4 gap-6 mt-2">
+            <div>
               {getProducts.loading ? (
-                <ProductLoadingPage />
-              ) : products ? (
-                products.length > 0 ? (
-                  products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))
-                ) : null
-              ) : null}
+                <div className="grid grid-cols-4 gap-6 mt-2">
+                  <ProductLoadingPage />
+                </div>
+              ) : (
+                products &&
+                (products.length > 0 ? (
+                  <div className="grid grid-cols-4 gap-6 mt-2">
+                    {products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
+                  </div>
+                ) : (
+                  <div>{products.length > 0 ? null : <NotFoundProduct />}</div>
+                ))
+              )}
             </div>
-            <div>{products.length > 0 ? null : <NotFoundProduct />}</div>
           </div>
         </div>
       </div>

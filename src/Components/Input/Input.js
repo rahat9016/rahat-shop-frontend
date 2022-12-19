@@ -6,10 +6,11 @@ const Input = (props) => {
       <input
         type={props.type}
         placeholder={props.placeholder}
-        className={props.class}
+        className={`${props.class} invalid:border-red-500 `}
         onChange={props.handleChange}
         name={props.name}
         value={props.value}
+        required={props.required}
       />
     </>
   );

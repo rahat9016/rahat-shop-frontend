@@ -13,6 +13,8 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Pages/Profile/Profile";
 import SearchProduct from "./Pages/SearchProduct/SearchProduct";
 import Checkout from "./Pages/Checkout/Checkout";
+import Payment from "./Pages/Payment/Payment";
+import Order from "./Pages/Order/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,8 @@ function App() {
           <Route path="review/:id" element={<Review />}></Route>
           <Route path="account/profile" element={<Profile />}></Route>
           <Route path="checkout" element={<Checkout />}></Route>
+          <Route path="payment" element={<Payment />}></Route>
+          <Route path="user/order" element={<Order />}></Route>
         </Route>
       </Routes>
     </div>

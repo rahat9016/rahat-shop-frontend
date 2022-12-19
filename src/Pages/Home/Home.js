@@ -19,7 +19,7 @@ const Home = () => {
   const products = useSelector((state) => state.AllProductsData);
 
   useEffect(() => {
-    dispatch(InitiateDataFunc({ sort: "sold", order: "desc", limit: 5 }));
+    dispatch(InitiateDataFunc({ sort: "sold", order: "desc", limit: 10 }));
   }, [dispatch]);
 
   const handleCart = (id) => {

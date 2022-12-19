@@ -2,7 +2,7 @@ import React from "react";
 
 const DeliveryMethod = (props) => {
   return (
-    <div className="bg-white shadow-sm rounded-lg">
+    <div className="bg-white">
       <div className="p-2">
         <legend className="py-1">Select a delivery method</legend>
         <div className="p-2">
