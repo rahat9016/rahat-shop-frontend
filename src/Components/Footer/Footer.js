@@ -6,14 +6,14 @@ import { IoLogoYoutube } from "react-icons/io";
 const Footer = () => {
   return (
     <footer className="bg-footBg">
-      <div className="container mx-auto pt-12">
-        <div className="grid grid-cols-5 text-white gap-4">
+      <div className="max-w-7xl mx-auto pt-12 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  xl:grid-cols-5 text-white gap-1 sm:gap-2 md:gap-4 px-10 sm:px-5 md:px-5 lg:px-2 xl:px-0">
           <div>
             <h1 className="text-lg mb-6 tracking-[3px]">SUPPORT</h1>
             <div className="flex items-center gap-2 border border-[rgba(255,255,255,.1)] rounded-full py-2 px-4 hover:border-orange font-fira mb-4">
               <BsTelephoneFill size={"40px"} className="border-r  p-2" />
               <div className="ml-2">
-                <span className="block text-g text-[rgba(255,255,255,.5)]">
+                <span className="block text-lg text-[rgba(255,255,255,.5)]">
                   9AM - 8PM
                 </span>
                 <span className="block text-xl text-orange">016xxxxxxx90</span>
@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
               <li>
                 Email: <br />{" "}
-                <span className="text-orange">
+                <span className="text-orange sm:text-sm md:text-sm xl:text-base">
                   minhajurrohoman9016@gmail.com
                 </span>
               </li>
@@ -88,11 +88,11 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="text-textGray  border-t flex justify-between border-[rgba(255,255,255,.1)] py-6 mt-8">
-          <span className="text-xs">
+        <div className="text-textGray border-t border-[rgba(255,255,255,.1)] py-6 mt-8 text-center sm:flex sm:justify-between sm:px-10">
+          <span className="text-xs ">
             © 2020 Minhajur Rohoman Rahat | All rights reserved
           </span>
-          <span className="text-xs">Powered By: Human Search Tech</span>
+          <span className="text-xs block">Powered By: Human Search Tech</span>
         </div>
       </div>
     </footer>

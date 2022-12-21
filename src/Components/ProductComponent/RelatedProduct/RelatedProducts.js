@@ -19,7 +19,7 @@ const RelatedProducts = (props) => {
           return (
             <div className="flex mb-3 gap-2 border-b-2 border-lightGray ">
               <img
-                width={"120px"}
+                className="w-48 md:w-56	md:h-56 lg:w-32 lg:h-28"
                 src={item && item.productPictures[0]?.img}
                 alt=""
               />
@@ -34,7 +34,7 @@ const RelatedProducts = (props) => {
                   {item?.price.toLocaleString("en-US")}
                 </p>
                 <Button
-                  class="flex justify-center  items-center gap-2 text-base transition duration-300 ease-in-out text-btnBlue font-bold hover:text-white bg-[rgba(55,75,185,.1)] hover:bg-btnBlue px-8 py-2  rounded-md w-full mb-4"
+                  class="flex justify-center  items-center gap-2 text-base transition duration-300 ease-in-out text-btnBlue font-bold hover:text-white bg-[rgba(55,75,185,.1)] hover:bg-btnBlue px-2 xl:px-8 py-2  rounded-md w-full mb-4"
                   handleClick={() => handleClick(item._id)}
                 >
                   <AiOutlineShoppingCart />

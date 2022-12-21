@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import "./style.css";
+// import "./style.css";
 const MenuSection = ({ home }) => {
   const { category } = useSelector((state) => state.category);
 
@@ -40,9 +40,9 @@ const MenuSection = ({ home }) => {
           <ul>{renderCategory(category)}</ul>
         </div>
       ) : (
-        <div className="w-full bg-white shadow-md z-50	">
-          <div className="allPageMenu container mx-auto">
-            <ul>{renderCategory(category)}</ul>
+        <div className="w-full bg-white shadow-md z-50	hidden lg:block">
+          <div className="allPageMenu max-w-7xl mx-auto">
+            <ul className="">{renderCategory(category)}</ul>
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@ const Search = () => {
   };
 
   return (
-    <div className="flex flex-row items-center w-9/12 justify-between p-1 pl-2   bg-primaryLight rounded-lg">
+    <div className="hidden lg:flex flex-row items-center lg:w-9/12 justify-between p-1 pl-2   bg-primaryLight rounded-lg">
       <FiSearch className="text-white font-bold text-2xl" />
       <input
         placeholder="Search..."

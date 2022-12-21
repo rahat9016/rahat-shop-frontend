@@ -11,9 +11,9 @@ const Payment = () => {
       <div className={"flex justify-between"}>
         <MenuSection />
       </div>
-      <div className="container mx-auto">
-        <div className="w-[50%] h-[50vh] mx-auto ">
-          <div className="mb-20"></div>
+      <div className="max-w-7xl mx-auto py-48 px-2">
+        <div className="lg:w-[60%] mx-auto bg-white shadow-sm px-5 pl-8 lg:pl-5  py-5 rounded-sm">
+          <h1>Your Payment</h1>
           <div>
             <Elements stripe={promise}>
               <Stripe />

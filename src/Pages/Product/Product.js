@@ -56,18 +56,16 @@ const Product = () => {
   return (
     <Layout>
       <div>
-        <MenuSection />
-        <div className="container mx-auto py-5 ">
-          <div className="flex ">
+        {/* <MenuSection /> */}
+        <div className="max-w-7xl mx-auto py-5 ">
+          <div className="flex flex-col md:flex-row">
             {/* Product Images */}
-            <div className="w-[40%] flex flex-col items-center gap-4">
-              <div className="text-center w-full h-[500px] ">
-                <img
-                  src={singleProductImage}
-                  className="w-[80%] h-fit inline "
-                  alt=""
-                />
-              </div>
+            <div className=" flex flex-col items-center gap-4 md:w-[40%] ">
+              <img
+                src={singleProductImage}
+                className="w-96 md:w-full	block ml-auto mr-auto mb-1   "
+                alt=""
+              />
               <div className="flex flex-row gap-1">
                 {product &&
                   product.productPictures.map((productImg, i) => {
@@ -84,8 +82,8 @@ const Product = () => {
               </div>
             </div>
             {/* Product Information */}
-            <div className="w-[60%]">
-              <h1 className="text-3xl	text-textBlue mb-4 font-plus">
+            <div className="md:w-[60%] px-4 sm:px-4 md:px-4 lg:px-0 mt-6">
+              <h1 className=" text-xl sn:text-2xl md:text-3xl	text-textBlue mb-4 font-plus">
                 {product && product.name}
               </h1>
 
@@ -171,12 +169,12 @@ const Product = () => {
           </div>
         </div>
         <div className="bg-bgShop">
-          <div className="container mx-auto">
-            <div className="flex gap-7 mt-11 ">
-              <div className="w-[70%] ">
+          <div className="max-w-7xl mx-auto">
+            <div className="lg:flex  gap-7 mt-11 ">
+              <div className="lg:w-[70%] ">
                 <Reviews product={product} />
               </div>
-              <div className="w-[30%] ">
+              <div className="lg:w-[30%] ">
                 {" "}
                 <RelatedProducts relateProducts={relateProducts} />
               </div>

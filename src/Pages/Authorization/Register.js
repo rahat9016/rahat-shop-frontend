@@ -37,10 +37,10 @@ const Register = () => {
       <div className="bg-bgShop h-[100%]">
         <MenuSection />
       </div>
-      <div className="container mx-auto ">
-        <div className="flex justify-center mt-20 mb-24">
+      <div className="max-w-7xl mx-auto my-20">
+        <div className="flex justify-center ">
           <form
-            className="w-[30%] flex flex-col font-fira "
+            className="lg:w-[40%] flex flex-col font-fira "
             onSubmit={handleSignup}
           >
             <h1 className="text-xl mb-2">Account Login</h1>

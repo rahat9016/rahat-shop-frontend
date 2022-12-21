@@ -22,21 +22,23 @@ const SearchProduct = () => {
   }, [searchProduct.products]);
   return (
     <Layout>
-      <div className="bg-bgShop pb-20">
+      <div className="bg-bgShop ">
         <MenuSection />
-        <div className="container mx-auto">
-          <div className="grid grid-cols-5 gap-6 mt-2">
-            {searchProduct.loading ? (
-              <ProductLoadingPage />
-            ) : products ? (
-              products.length > 0 ? (
-                products.map((product) => {
-                  return <ProductCard key={product._id} product={product} />;
-                })
-              ) : null
-            ) : null}
+        <div className="py-10">
+          <div className="max-w-7xl mx-auto ">
+            <div className="px-2 sm:px-10 md:px-8 lg:px-4 xl:px-0 grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
+              {searchProduct.loading ? (
+                <ProductLoadingPage />
+              ) : products ? (
+                products.length > 0 ? (
+                  products.map((product) => {
+                    return <ProductCard key={product._id} product={product} />;
+                  })
+                ) : null
+              ) : null}
+            </div>
+            <div>{products.length > 0 ? null : <NotFoundProduct />}</div>
           </div>
-          <div>{products.length > 0 ? null : <NotFoundProduct />}</div>
         </div>
       </div>
     </Layout>

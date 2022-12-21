@@ -62,8 +62,8 @@ const Shop = () => {
     <Layout>
       <div className="bg-bgShop pb-20">
         <MenuSection />
-        <div className="container mx-auto flex gap-4 w-full mt-5">
-          <div className="w-[20%] ">
+        <div className="max-w-7xl mx-auto flex gap-4 w-full mt-5">
+          <div className="hidden lg:block lg:w-[20%] ">
             <div className="flex flex-col gap-2">
               <ToggleMenu title={"Price"}>
                 <Slider
@@ -142,17 +142,17 @@ const Shop = () => {
               </ToggleMenu>
             </div>
           </div>
-          <div className="w-[80%]">
+          <div className="w-full lg:w-[80%]">
             <TopBar />
             <div>
               {getProducts.loading ? (
-                <div className="grid grid-cols-4 gap-6 mt-2">
+                <div className="px-2 lg:px-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-2">
                   <ProductLoadingPage />
                 </div>
               ) : (
                 products &&
                 (products.length > 0 ? (
-                  <div className="grid grid-cols-4 gap-6 mt-2">
+                  <div className="px-2 lg:px-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-2">
                     {products.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}

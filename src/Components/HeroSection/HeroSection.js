@@ -10,7 +10,7 @@ import "./style.css";
 const HeroSection = () => {
   const brands = useSelector((state) => state.brands.brands);
   return (
-    <div className="">
+    <div>
       <div className="w-full">
         <Swiper
           spaceBetween={30}
@@ -71,18 +71,18 @@ const HeroSection = () => {
               })
             : null}
         </Swiper>
-        <div className="grid grid-cols-5 gap-4 mt-5">
+        <div className="flex  ">
           {brands.length > 0
             ? brands.map((brand) => {
                 return (
                   <div
                     key={brand._id}
-                    className=" h-24 p-4 flex items-center text-center mx-auto "
+                    className="h-16 flex items-center text-center"
                   >
                     <img
                       src={brand.brandLogo}
                       alt=""
-                      className="h-[50px]	w-fit"
+                      className="w-[36px] h-[30px]"
                     />
                   </div>
                 );

@@ -16,13 +16,11 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-md">
       <div className="p-3">
-        <div className="h-[250px] p-2 text-center">
-          <img
-            src={productImage[0]}
-            alt="Product Img"
-            className="h-[100%] w-[100%]"
-          />
-        </div>
+        <img
+          src={productImage[0]}
+          alt="Product Img"
+          className="w-56 block ml-auto mr-auto mb-4"
+        />
         <div>
           <Link
             to={`/product_id?productId=${_id}`}

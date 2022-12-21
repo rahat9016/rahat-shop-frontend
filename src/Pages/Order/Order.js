@@ -19,8 +19,8 @@ const Order = () => {
         <MenuSection />
       </div>
       <div className="bg-bgShop py-20">
-        <div className="container mx-auto">
-          <div className="w-[70%] mx-auto ">
+        <div className="max-w-7xl mx-auto">
+          <div className="lg:w-[80%] mx-auto px-2 lg:px-0">
             {/* User Information */}
             <div className="flex gap-4 items-center border-b-2 border-[#eee] pb-2 ">
               <CgProfile size={80} color="#C5C5C5" />

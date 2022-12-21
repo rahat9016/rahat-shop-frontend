@@ -39,8 +39,7 @@ function App() {
         <Route path="/account/login" element={<Login />}></Route>
         <Route path="/new-account/register" element={<Register />}></Route>
         <Route path="/product_id" element={<Product />}></Route>
-        {/* <Route path="/checkout" element={<Checkout />}></Route> */}
-        {/* Private routers */}
+
         <Route path="/*" element={<PrivateRoute />}>
           <Route path="review/:id" element={<Review />}></Route>
           <Route path="account/profile" element={<Profile />}></Route>
