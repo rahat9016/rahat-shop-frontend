@@ -26,7 +26,7 @@ const MenuSection = ({ home }) => {
             <MdOutlineKeyboardArrowRight />
           ) : null}
           {category.children.length > 0 ? (
-            <ul> {renderCategory(category.children)}</ul>
+            <ul className=""> {renderCategory(category.children)}</ul>
           ) : null}
         </li>
       );
@@ -42,7 +42,7 @@ const MenuSection = ({ home }) => {
       ) : (
         <div className="w-full bg-white shadow-md z-50	hidden lg:block">
           <div className="allPageMenu max-w-7xl mx-auto">
-            <ul className="">{renderCategory(category)}</ul>
+            <ul>{renderCategory(category)}</ul>
           </div>
         </div>
       )}

@@ -10,8 +10,8 @@ const Cart = ({ home }) => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cartItems);
   return (
-    <div className="flex flex-row-reverse lg:flex-row items-center gap-3 ml-8 ">
-      <AiOutlineHeart className="text-2xl text-white cursor-pointer hidden lg:block" />
+    <div className="flex flex-row-reverse md:flex-row items-center gap-3 ml-8 ">
+      <AiOutlineHeart className="text-2xl text-white cursor-pointer hidden md:block" />
       <div className={`relative `}>
         <AiOutlineShoppingCart
           className={`text-2xl text-white cursor-pointer z-50 `}
@@ -26,7 +26,7 @@ const Cart = ({ home }) => {
           home ? "md:hidden" : "hidden"
         }`}
       />
-      <div className={` hidden lg:block`}>
+      <div className={` hidden md:block`}>
         <Auth />
       </div>
     </div>
