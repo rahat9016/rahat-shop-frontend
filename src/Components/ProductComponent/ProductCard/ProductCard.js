@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const { _id, name, price, productPictures, keyFeatures } = product;
   const productImage = productPictures.map((img) => {
-    return img.img;
+    return img.url;
   });
   const handleClick = () => {
     dispatch(addToCart(_id, 1));

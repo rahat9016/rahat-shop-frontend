@@ -23,7 +23,7 @@ const CartProductItem = (props) => {
     <div>
       <div className="flex flex-row border-b border-lightGray items-center">
         <div className="basis-1/4 hidden lg:block px-2 py-3 mx-[2px] rounded-sm">
-          <img src={productPic && productPic[0].img} alt="" className="w-16" />
+          <img src={productPic && productPic[0].url} alt="" className="w-16" />
         </div>
         <div className="basis-1/2  px-2 py-3 mx-[2px] rounded-sm">
           <Link

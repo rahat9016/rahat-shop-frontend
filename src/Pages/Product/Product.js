@@ -20,7 +20,7 @@ const Product = () => {
   const params = location.search.split("=")[1];
   const { product } = useSelector((state) => state.product);
   // destructure product image
-  const proImg = product && product?.productPictures[0].img;
+  const proImg = product && product?.productPictures[0].url;
   const [singleProductImage, setSingleProductImage] = useState();
   const [quantity, setQuantity] = useState(1);
   useEffect(() => {
@@ -56,7 +56,7 @@ const Product = () => {
   return (
     <Layout>
       <div>
-        {/* <MenuSection /> */}
+        <MenuSection />
         <div className="max-w-7xl mx-auto py-5 ">
           <div className="flex flex-col md:flex-row">
             {/* Product Images */}

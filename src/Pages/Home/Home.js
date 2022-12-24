@@ -54,7 +54,7 @@ const Home = () => {
                     className={`p-3  rounded-3xl shadow-sm bg-[#fff]`}
                   >
                     <img
-                      src={product?.productPictures[0].img}
+                      src={product?.productPictures[0].url}
                       alt=""
                       className="w-56 block ml-auto mr-auto mb-4"
                     />
@@ -112,7 +112,7 @@ const Home = () => {
                     className={`p-3  rounded-3xl shadow-sm bg-[#fff]`}
                   >
                     <img
-                      src={product?.productPictures[0].img}
+                      src={product?.productPictures[0].url}
                       alt=""
                       className="w-56 block ml-auto mr-auto mb-4"
                     />

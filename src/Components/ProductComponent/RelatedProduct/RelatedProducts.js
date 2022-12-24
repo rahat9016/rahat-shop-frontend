@@ -3,6 +3,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../action/cart.action";
 import Button from "../../Button/Button";
+import { Link } from "react-router-dom";
 const RelatedProducts = (props) => {
   const { products } = props.relateProducts;
   const dispatch = useDispatch();
@@ -20,16 +21,16 @@ const RelatedProducts = (props) => {
             <div className="flex mb-3 gap-2 border-b-2 border-lightGray ">
               <img
                 className="w-48 md:w-56	md:h-56 lg:w-32 lg:h-28"
-                src={item && item.productPictures[0]?.img}
+                src={item && item.productPictures[0]?.url}
                 alt=""
               />
               <div>
-                <a
-                  href={`product_id?${item?._id}/product_name=${item?.name}`}
+                <Link
+                  to={`/product_id?productId=${item._id}`}
                   className="hover:underline underline-offset-1 text-base font-medium font-roboto"
                 >
                   {item?.name}
-                </a>{" "}
+                </Link>{" "}
                 <p className="mb-2 text-orange font-semibold">
                   {item?.price.toLocaleString("en-US")}
                 </p>
