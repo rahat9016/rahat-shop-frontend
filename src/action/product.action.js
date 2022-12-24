@@ -1,4 +1,5 @@
 import {
+  getAllProducts,
   getProductById,
   getRelatedProduct,
   productBySearch,

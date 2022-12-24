@@ -2,7 +2,12 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory, getBrands, isUserLoggedIn } from "./action";
+import {
+  getAllCategory,
+  getAllProductsAction,
+  getBrands,
+  isUserLoggedIn,
+} from "./action";
 import Shop from "./Pages/Shop/Shop";
 import Cart from "./Pages/Cart/Cart";
 import Product from "./Pages/Product/Product";
@@ -27,6 +32,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllCategory());
     dispatch(getBrands());
+    dispatch(getAllProductsAction());
   }, [dispatch]);
 
   return (

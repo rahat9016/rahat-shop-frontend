@@ -14,6 +14,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const products = useSelector((state) => state.AllProductsData);
+  const getProducts = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(InitiateDataFunc({ sort: "sold", order: "desc", limit: 5 }));
@@ -101,10 +102,10 @@ const Home = () => {
             <p className="font-fira mb-5">Check & Get Your Desired Product!</p>
           </div>
           <div className="px-2 sm:px-10 md:px-8 lg:px-4 xl:px-0 grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {products.loading ? (
+            {getProducts.loading ? (
               <p>Loading...</p>
             ) : (
-              products?.products?.map((product, index) => {
+              getProducts?.products?.map((product, index) => {
                 return (
                   <div
                     key={product._id}
